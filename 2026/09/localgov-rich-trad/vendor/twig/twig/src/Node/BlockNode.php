@@ -42,7 +42,7 @@ class BlockNode extends Node
 
         $compiler
             ->subcompile($this->getNode('body'))
-            ->write("return; yield;\n")
+            ->write("yield from [];\n")
             ->outdent()
             ->write("}\n\n")
         ;

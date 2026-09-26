@@ -35,6 +35,7 @@
         "drupal/localgov_paragraphs": "dev-3589561-rich-content-mission-trad-paragraphs as 2.6.5",
         "drupal/localgov_search_solr": "^1.1",
         "drupal/localgov_services": "dev-3582281-rich-content-traditional-paragraphs as 2.2.6",
+        "twig/twig": "~3.29.0",
         "wikimedia/composer-merge-plugin": "^2.1"
     },
     "require-dev": {

@@ -90,7 +90,7 @@ class MacroReferenceExpression extends AbstractExpression implements SupportDefi
             ->subcompile($this->getNode('arguments'))
             ->raw(', $context, ')
             ->repr($this->getTemplateLine())
-            ->raw(', $this->source)')
+            ->raw(', $this->getSourceContext())')
         ;
     }
 

@@ -43,10 +43,10 @@ use Twig\TokenParser\TokenParserInterface;
  */
 class Environment
 {
-    public const VERSION = '3.30.0';
-    public const VERSION_ID = 33000;
+    public const VERSION = '3.29.0';
+    public const VERSION_ID = 32900;
     public const MAJOR_VERSION = 3;
-    public const MINOR_VERSION = 30;
+    public const MINOR_VERSION = 29;
     public const RELEASE_VERSION = 0;
     public const EXTRA_VERSION = '';
 
@@ -72,10 +72,6 @@ class Environment
     private $useYield;
     private $defaultRuntimeLoader;
     private array $hotCache = [];
-    /**
-     * @var array<string, TemplateWrapper>
-     */
-    private array $loadedWrappers = [];
 
     /**
      * Constructor.
@@ -148,11 +144,6 @@ class Environment
         $this->addExtension(new OptimizerExtension($options['optimizations']));
     }
 
-    public function __clone()
-    {
-        trigger_deprecation('twig/twig', '3.30', 'Cloning a "%s" instance is deprecated and will throw in Twig 4.0; build a new environment instead.', self::class);
-    }
-
     /**
      * @internal
      */
@@ -169,7 +160,7 @@ class Environment
     public function enableDebug()
     {
         $this->debug = true;
-        $this->optionsHash = null;
+        $this->updateOptionsHash();
     }
 
     /**
@@ -180,7 +171,7 @@ class Environment
     public function disableDebug()
     {
         $this->debug = false;
-        $this->optionsHash = null;
+        $this->updateOptionsHash();
     }
 
     /**
@@ -231,7 +222,7 @@ class Environment
     public function enableStrictVariables()
     {
         $this->strictVariables = true;
-        $this->optionsHash = null;
+        $this->updateOptionsHash();
     }
 
     /**
@@ -242,7 +233,7 @@ class Environment
     public function disableStrictVariables()
     {
         $this->strictVariables = false;
-        $this->optionsHash = null;
+        $this->updateOptionsHash();
     }
 
     /**
@@ -259,7 +250,6 @@ class Environment
     {
         $cls = $this->getTemplateClass($name);
         $this->hotCache[$name] = $cls.'_'.bin2hex(random_bytes(16));
-        unset($this->loadedWrappers[$cls]);
 
         if ($this->cache instanceof RemovableCacheInterface) {
             $this->cache->remove($name, $cls);
@@ -324,7 +314,7 @@ class Environment
      */
     public function getTemplateClass(string $name, ?int $index = null): string
     {
-        $key = ($this->hotCache[$name] ?? $this->getLoader()->getCacheKey($name)).($this->optionsHash ??= $this->getOptionsHash());
+        $key = ($this->hotCache[$name] ?? $this->getLoader()->getCacheKey($name)).$this->optionsHash;
 
         return '__TwigTemplate_'.hash(\PHP_VERSION_ID < 80100 ? 'sha256' : 'xxh128', $key).(null === $index ? '' : '___'.$index);
     }
@@ -379,9 +369,7 @@ class Environment
             return $name;
         }
 
-        $cls = $this->getTemplateClass($name);
-
-        return $this->loadedWrappers[$cls] ??= new TemplateWrapper($this, $this->loadTemplate($cls, $name));
+        return new TemplateWrapper($this, $this->loadTemplate($this->getTemplateClass($name), $name));
     }
 
     /**
@@ -701,7 +689,7 @@ class Environment
     public function addExtension(ExtensionInterface $extension)
     {
         $this->extensionSet->addExtension($extension);
-        $this->optionsHash = null;
+        $this->updateOptionsHash();
     }
 
     /**
@@ -712,7 +700,7 @@ class Environment
     public function setExtensions(array $extensions)
     {
         $this->extensionSet->setExtensions($extensions);
-        $this->optionsHash = null;
+        $this->updateOptionsHash();
     }
 
     /**
@@ -952,9 +940,9 @@ class Environment
         return $this->extensionSet->getExpressionParsers();
     }
 
-    private function getOptionsHash(): string
+    private function updateOptionsHash(): void
     {
-        return implode(':', [
+        $this->optionsHash = implode(':', [
             $this->extensionSet->getSignature(),
             \PHP_MAJOR_VERSION,
             \PHP_MINOR_VERSION,

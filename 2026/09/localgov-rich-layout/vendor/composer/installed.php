@@ -3210,9 +3210,9 @@
             'dev_requirement' => false,
         ),
         'twig/twig' => array(
-            'pretty_version' => 'v3.30.0',
-            'version' => '3.30.0.0',
-            'reference' => '8c737079b726af72ff8ef3c595be9f6a810ea1ef',
+            'pretty_version' => 'v3.29.0',
+            'version' => '3.29.0.0',
+            'reference' => '45a3c6e9224c3377a39c7b150bb29d5d97d2c75d',
             'type' => 'library',
             'install_path' => __DIR__ . '/../twig/twig',
             'aliases' => array(),

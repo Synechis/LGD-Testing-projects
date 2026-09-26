@@ -51,8 +51,9 @@
         "drupal/localgov_demo": "dev-3582240-update-demo-content as 3.1.1",
         "drupal/localgov_paragraphs": "dev-3582221-add-existing-page as 2.6.3",
         "drupal/localgov_scarfolk": "dev-3580932-check-the-new as 2.0.1",
-        "drupal/localgov_services": "dev-3561968-add-external-links as 2.2.4",
         "drupal/localgov_search_solr": "^1.1",
+        "drupal/localgov_services": "dev-3561968-add-external-links as 2.2.4",
+        "twig/twig": "~3.29.0",
         "wikimedia/composer-merge-plugin": "^2.1"
     },
     "require-dev": {

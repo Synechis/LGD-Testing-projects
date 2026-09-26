@@ -97,20 +97,6 @@ final class TemplateWrapper
     }
 
     /**
-     * Returns the escaping strategy the template body was compiled with.
-     *
-     * This describes the template's own source, not its output: `autoescape`,
-     * `escape`, and anything rendered by a parent, embedded, or included
-     * template can use another strategy.
-     *
-     * @return string|false The strategy name or false when the template is not autoescaped
-     */
-    public function getDefaultEscapeStrategy(): string|false
-    {
-        return $this->template->getDefaultEscapeStrategy();
-    }
-
-    /**
      * @internal
      */
     public function isOwnedBy(Environment $env): bool
@@ -121,11 +107,9 @@ final class TemplateWrapper
     /**
      * @internal
      */
-    public function unwrap(?Environment $env = null): Template
+    public function unwrap(Environment $env): Template
     {
-        if (null === $env) {
-            trigger_deprecation('twig/twig', '3.30', 'Calling "%s()" without arguments is deprecated, pass the Twig environment instead.', __METHOD__);
-        } elseif (!$this->isOwnedBy($env)) {
+        if (!$this->isOwnedBy($env)) {
             throw new RuntimeError(\sprintf('A "%s" can only be used with the "%s" that created it.', self::class, Environment::class));
         }
 

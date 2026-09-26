@@ -58,6 +58,7 @@
         "drupal/localgov_paragraphs": "dev-3589560-media-mission-development as 2.6.5",
         "drupal/localgov_publications": "dev-3590861-media-mission-development as 1.1.5",
         "drupal/localgov_search_solr": "^1.1",
+        "twig/twig": "~3.29.0",
         "wikimedia/composer-merge-plugin": "^2.1"
     },
     "require-dev": {

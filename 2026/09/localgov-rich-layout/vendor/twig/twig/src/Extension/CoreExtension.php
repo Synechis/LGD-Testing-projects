@@ -131,6 +131,14 @@ final class CoreExtension extends AbstractExtension
         'SplStack',
         'WeakMap',
     ];
+    /**
+     * @internal
+     */
+    public const STRINGABLE_KEY_ARRAY_ACCESS_CLASSES = [
+        'ArrayIterator',
+        'ArrayObject',
+        'RecursiveArrayIterator',
+    ];
 
     private const DEFAULT_TRIM_CHARS = " \t\n\r\0\x0B";
 
@@ -487,7 +495,9 @@ final class CoreExtension extends AbstractExtension
                 $values = self::convertEncoding($values, 'UTF-8', $charset);
             }
 
-            $values = self::splitIntoCharacters($values, 'random');
+            // unicode version of str_split()
+            // split at all positions, but not after the start and not before the end
+            $values = preg_split('/(?<!^)(?!$)/u', $values);
 
             if ('UTF-8' !== $charset) {
                 foreach ($values as $i => $value) {
@@ -887,7 +897,7 @@ final class CoreExtension extends AbstractExtension
         }
 
         if ($limit <= 1) {
-            return self::splitIntoCharacters($value, 'split');
+            return preg_split('/(?<!^)(?!$)/u', $value);
         }
 
         $length = mb_strlen($value, $charset);
@@ -994,7 +1004,9 @@ final class CoreExtension extends AbstractExtension
             $string = self::convertEncoding($string, 'UTF-8', $charset);
         }
 
-        $string = implode('', array_reverse(self::splitIntoCharacters($string, 'reverse')));
+        preg_match_all('/./us', $string, $matches);
+
+        $string = implode('', array_reverse($matches[0]));
 
         if ('UTF-8' !== $charset) {
             $string = self::convertEncoding($string, $charset, 'UTF-8');
@@ -1018,7 +1030,7 @@ final class CoreExtension extends AbstractExtension
                 $item = self::convertEncoding($item, 'UTF-8', $charset);
             }
 
-            $item = self::splitIntoCharacters($item, 'shuffle');
+            $item = preg_split('/(?<!^)(?!$)/u', $item, -1);
             shuffle($item);
             $item = implode('', $item);
 
@@ -1260,22 +1272,6 @@ final class CoreExtension extends AbstractExtension
         }
 
         return iconv($from, $to, $string ?? '');
-    }
-
-    /**
-     * Unicode version of str_split(), an empty string giving a single empty character.
-     *
-     * @return non-empty-list<string>
-     *
-     * @throws RuntimeError When the string cannot be split into characters
-     */
-    private static function splitIntoCharacters(string $string, string $name): array
-    {
-        if (false === preg_match_all('/./us', $string, $matches)) {
-            throw new RuntimeError(\sprintf('Unable to split the string passed to "%s" into characters: %s.', $name, preg_last_error_msg()));
-        }
-
-        return $matches[0] ?: [''];
     }
 
     /**
@@ -1761,10 +1757,6 @@ final class CoreExtension extends AbstractExtension
         if (Template::METHOD_CALL !== $type) {
             $arrayItem = \is_bool($item) || \is_float($item) ? (int) $item : $item;
 
-            if ($arrayItem instanceof \Stringable && ($object instanceof \ArrayObject || $object instanceof \ArrayIterator)) {
-                $arrayItem = (string) $arrayItem;
-            }
-
             if ($sandboxed && $object instanceof \ArrayAccess && !\in_array($object::class, self::ARRAY_LIKE_CLASSES, true)) {
                 try {
                     $env->getExtension(SandboxExtension::class)->getChecker()->checkPropertyAllowed($object, $arrayItem, $lineno, $source);
@@ -1775,6 +1767,10 @@ final class CoreExtension extends AbstractExtension
                     $item = (string) $item;
                     goto methodCheck;
                 }
+            }
+
+            if ($object instanceof \ArrayAccess && $arrayItem instanceof \Stringable && \in_array($object::class, self::STRINGABLE_KEY_ARRAY_ACCESS_CLASSES, true)) {
+                $arrayItem = (string) $arrayItem;
             }
 
             if (match (true) {
