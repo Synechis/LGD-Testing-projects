@@ -1,0 +1,50 @@
+{
+    "name": "previousnext/nested-set",
+    "description": "A PHP Doctrine DBAL implementation for Nested Sets.",
+    "type": "library",
+    "license": "GPL-2.0-or-later",
+    "authors": [
+        {
+            "name": "Kim Pepper",
+            "email": "kim@pepper.id.au"
+        }
+    ],
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "require": {
+        "php": ">=8.2",
+        "doctrine/dbal": "^3.3 || ^4.0"
+    },
+    "require-dev": {
+        "ext-pdo_sqlite": "*",
+        "dealerdirect/phpcodesniffer-composer-installer": "^1.2.1",
+        "drupal/coder": "^9.0.1",
+        "phpstan/extension-installer": "^1.4.3",
+        "phpstan/phpstan": "^2.2.5",
+        "phpstan/phpstan-deprecation-rules": "^2.0.4",
+        "phpunit/phpunit": "^11.5.56",
+        "squizlabs/php_codesniffer": "^4.0.1",
+        "staabm/annotate-pull-request-from-checkstyle": "^1.8.7"
+    },
+    "autoload": {
+        "psr-4": {
+            "PNX\\NestedSet\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "PNX\\NestedSet\\Tests\\": "tests"
+        }
+    },
+    "config": {
+        "bin-dir": "bin",
+        "preferred-install": {
+            "*": "dist"
+        },
+        "sort-packages": true,
+        "allow-plugins": {
+            "dealerdirect/phpcodesniffer-composer-installer": true,
+            "phpstan/extension-installer": true
+        }
+    }
+}

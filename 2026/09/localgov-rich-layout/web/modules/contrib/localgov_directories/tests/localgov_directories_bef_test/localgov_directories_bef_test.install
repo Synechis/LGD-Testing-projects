@@ -1,0 +1,21 @@
+<?php
+
+/**
+ * @file
+ * Install hook for localgov_directories_bef_test.
+ */
+
+use Drupal\Component\Serialization\Yaml;
+
+/**
+ * Implements hook_install().
+ */
+function localgov_directories_bef_test_install(): void {
+  // Replace the view.
+  $view_config = \Drupal::service('config.factory')->getEditable('views.view.localgov_directory_channel');
+  $module_path = \Drupal::service('extension.list.module')->getPath('localgov_directories_bef_test');
+  $replacement = Yaml::decode(file_get_contents($module_path . '/config/override/views.view.localgov_directory_channel.yml'));
+  $view_config->setData($replacement);
+  $view_config->save();
+  drupal_flush_all_caches();
+}

@@ -1,0 +1,17 @@
+name: Test localgovdrupal/localgov drupal-profile
+
+on:
+  push:
+    branches:
+      - '4.x'
+  pull_request:
+    branches:
+      - '4.x'
+  workflow_dispatch:
+
+jobs:
+  tests:
+    uses: localgovdrupal/localgov_shared_workflows/.github/workflows/test-profile-4.x.yml@1.x-d11-1
+    with:
+      project: 'localgovdrupal/localgov'
+      project_path: 'web/profiles/contrib/localgov'

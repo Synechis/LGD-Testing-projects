@@ -1,0 +1,48 @@
+<?php
+
+namespace Drupal\preview_link_test\Hook;
+
+use Drupal\Core\Entity\Routing\DefaultHtmlRouteProvider;
+use Drupal\Core\Hook\Attribute\Hook;
+
+/**
+ * Hook implementations for preview_link_test.
+ */
+class PreviewLinkTestHooks {
+
+  /**
+   * Implements hook_entity_type_alter().
+   */
+  #[Hook('entity_type_alter')]
+  public function entityTypeAlter(array &$entity_types): void {
+    /** @var \Drupal\Core\Entity\EntityTypeInterface[] $entity_types */
+    // Remove this key since it breaks the update path test. Can be removed after
+    // https://www.drupal.org/project/drupal/issues/3158184.
+    if (isset($entity_types['entity_test_no_bundle'])) {
+      $entityTestNoBundle = $entity_types['entity_test_no_bundle'];
+      $entityKeys = $entityTestNoBundle->getKeys();
+      unset($entityKeys['revision']);
+      $entityTestNoBundle->set('entity_keys', $entityKeys);
+    }
+    if (isset($entity_types['entity_test_revpub'])) {
+      // Fixes entity_test_revpub link templates + route provider, see also
+      // https://www.drupal.org/project/drupal/issues/3154413.
+      $entityTestRevPub = $entity_types['entity_test_revpub'];
+      $entityTestRevPub->setLinkTemplate('canonical', '/entity_test_revpub/manage/{entity_test_revpub}');
+      // Content moderation already set path based on the wrong canonical path,
+      // override it here.
+      if ($entityTestRevPub->hasLinkTemplate('latest-version')) {
+        $entityTestRevPub->setLinkTemplate('latest-version', '/entity_test_revpub/manage/{entity_test_revpub}/latest');
+      }
+      // \preview_link_entity_type_alter() already set path based on the wrong
+      // canonical path override it here.
+      if ($entityTestRevPub->hasLinkTemplate('preview-link-generate')) {
+        $entityTestRevPub->setLinkTemplate('preview-link-generate', '/entity_test_revpub/manage/{entity_test_revpub}/generate-preview-link');
+      }
+      $routeProviders = $entityTestRevPub->getRouteProviderClasses();
+      $routeProviders['html'] = DefaultHtmlRouteProvider::class;
+      $entityTestRevPub->setHandlerClass('route_provider', $routeProviders);
+    }
+  }
+
+}

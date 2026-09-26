@@ -1,0 +1,10 @@
+.news-article__metadata {
+  margin-block-end: var(--grid-column-spacing);
+  padding: var(--grid-column-spacing);
+  border: var(--border);
+  background-color: var(--color-grey-lightest);
+}
+
+.news-article__metadata-item--categories {
+  margin-block-end: 0;
+}

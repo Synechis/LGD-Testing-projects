@@ -1,0 +1,6 @@
+view media assist labels:
+  title: 'See which image style rendered an image'
+  restrict access: false
+
+view media assist crop preview:
+  title: 'See which crops are set on a media image'

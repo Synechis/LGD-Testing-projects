@@ -1,0 +1,18 @@
+/**
+ * @file
+ * Extra style rules for the child pages.
+ */
+
+.localgov-services-sublanding-child-entity--unpublished {
+  background-color: #fc3;
+}
+.localgov-services-sublanding-child-entity--unpublished::after {
+  display: inline-block;
+  margin: 0.25em;
+  padding-right: 0.25em;
+  padding-left: 0.25em;
+  content: "Unpublished";
+  color: white;
+  background-color: black;
+  font-weight: bold;
+}

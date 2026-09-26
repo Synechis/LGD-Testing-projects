@@ -1,0 +1,8 @@
+services:
+  localgov_workflows_notifications.notifier:
+    class: Drupal\localgov_workflows_notifications\WorkflowNotification
+    arguments: ['@queue']
+
+  localgov_workflows_notifications.notification_timer:
+    class: Drupal\localgov_workflows_notifications\NotificationTimer
+    arguments: ['@config.factory', '@state', '@datetime.time']

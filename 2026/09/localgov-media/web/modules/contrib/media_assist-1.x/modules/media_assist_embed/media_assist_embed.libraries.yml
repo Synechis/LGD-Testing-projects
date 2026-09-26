@@ -1,0 +1,8 @@
+ckeditor5:
+  version: 1.x
+  js:
+    js/shape-panel-view.js: { preprocess: false, minified: true }
+    js/media-assist-embed.js: { preprocess: false, minified: true }
+  css:
+    theme:
+      css/media-assist-embed.css: {}

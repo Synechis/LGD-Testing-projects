@@ -1,0 +1,11 @@
+entity_reference_selection.localgov_directories_facets_selection:
+  type: entity_reference_selection.default
+  label: 'Directories facets selection handler settings'
+
+plugin.plugin_configuration.facets_processor.localgov_directories_processor:
+  type: mapping
+  label: 'LocalGov Directories Processor'
+  mapping:
+    settings:
+      type: mapping
+      label: 'Settings'

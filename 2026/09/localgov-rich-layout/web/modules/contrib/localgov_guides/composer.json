@@ -1,0 +1,19 @@
+{
+    "name": "drupal/localgov_guides",
+    "description": "LocalGovDrupal distribution: Guides feature.",
+    "type": "drupal-module",
+    "homepage": "https://www.drupal.org/project/localgov_guides",
+    "license": "GPL-2.0-or-later",
+    "minimum-stability": "dev",
+    "require": {
+        "drupal/core": "^10.2 || ^11.0",
+        "drupal/localgov_core": "^2.12 || ^3.0"
+    },
+    "require-dev": {
+        "drupal/localgov_search": "^1.2",
+        "drupal/localgov_services": "^2.1",
+        "drupal/localgov_topics": "^1.0",
+        "drupal/pathauto": "^1.6",
+        "drupal/preview_link"   : "^2.2@alpha"
+    }
+}

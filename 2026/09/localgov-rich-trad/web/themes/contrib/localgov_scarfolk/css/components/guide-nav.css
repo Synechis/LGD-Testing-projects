@@ -1,0 +1,5 @@
+.lgd-guide-nav {
+  border: var(--border);
+  border-block-start: var(--border-large-accent);
+  background-color: var(--color-grey-lightest);
+}

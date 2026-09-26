@@ -1,0 +1,101 @@
+<?php
+
+/**
+ * @file
+ * Localgov Review Date module hooks.
+ */
+
+use Drupal\Core\Entity\EntityTypeInterface;
+use Drupal\Core\Field\BaseFieldDefinition;
+use Drupal\Core\Form\FormStateInterface;
+use Drupal\node\NodeInterface;
+
+/**
+ * Implements hook_entity_bundle_field_info().
+ */
+function localgov_review_date_entity_bundle_field_info(EntityTypeInterface $entity_type, $bundle, array $base_field_definitions) {
+
+  // Add the review status field to nodes configured for scheduled transitions.
+  if ($entity_type->id() === 'node') {
+    $scheduled_bundles = \Drupal::service('scheduled_transitions.utility')->getBundles();
+
+    if (isset($scheduled_bundles['node']) && in_array($bundle, $scheduled_bundles['node'], TRUE)) {
+      $fields['localgov_review_date'] = BaseFieldDefinition::create('review_date')
+        ->setLabel(t('Review date'))
+        ->setDisplayOptions('form', [
+          'type' => 'review_date',
+          'weight' => -5,
+        ])
+        ->setDisplayConfigurable('form', TRUE)
+        ->setComputed(TRUE);
+
+      return $fields;
+    }
+  }
+}
+
+/**
+ * Implements hook_form_BASE_FORM_ID_alter().
+ *
+ * Add submit handler to the scheduled transitions settings form.
+ */
+function localgov_review_date_form_scheduled_transitions_settings_form_alter(&$form, FormStateInterface $form_state, $form_id) {
+  $form['#submit'][] = 'localgov_review_date_form_scheduled_transitions_settings_submit';
+}
+
+/**
+ * Clear caches after submitting the scheduled transitions settings form.
+ */
+function localgov_review_date_form_scheduled_transitions_settings_submit(array $form, FormStateInterface $form_state) {
+
+  // The review date field is only added to nodes that have scheduled
+  // transitions enabled. It's necessary to rebuild caches after making changes
+  // to scheduled transitions to ensure the field is added.
+  drupal_flush_all_caches();
+}
+
+/**
+ * Implements hook_node_update().
+ */
+function localgov_review_date_node_update(NodeInterface $node) {
+
+  // Compare moderation state between original and saved node.
+  $original = $node->original;
+  if ($original->hasField('moderation_state') && !$original->get('moderation_state')->isEmpty() && $original->get('moderation_state')->value) {
+    $previous_state = $original->get('moderation_state')->getValue()[0]['value'];
+    $new_state = $node->get('moderation_state')->getValue()[0]['value'];
+
+    // If node is being moved into the archvied state,
+    // Find any scheduled transitions to review and delete them.
+    if ($previous_state != $new_state && $new_state == 'archived') {
+      $st_storage = \Drupal::entityTypeManager()->getStorage('scheduled_transition');
+      $st_ids = $st_storage->getQuery()
+        ->condition('workflow', 'localgov_editorial')
+        ->condition('entity__target_type', 'node')
+        ->condition('entity__target_id', $node->id())
+        ->accessCheck(FALSE)
+        ->execute();
+      $scheduled_transitions = $st_storage->loadMultiple($st_ids);
+      foreach ($scheduled_transitions as $scheduled_transition) {
+        // Using condition('moderation_state', 'review') above does not bring
+        // in any results, so do an if check here if the transition is in review
+        // and delete it.
+        if ($scheduled_transition->get('moderation_state')->value == 'review') {
+          $scheduled_transition->delete();
+        }
+      }
+
+      // Also delete active review entities of this node.
+      $review_storage = \Drupal::entityTypeManager()->getStorage('review_date');
+      $review_ids = $review_storage->getQuery()
+        ->condition('entity', $node->id())
+        ->condition('active', 1)
+        ->accessCheck(FALSE)
+        ->execute();
+      $review_entities = $review_storage->loadMultiple($review_ids);
+      foreach ($review_entities as $review) {
+        $review->delete();
+      }
+    }
+  }
+}

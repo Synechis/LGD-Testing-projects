@@ -1,0 +1,7 @@
+.service-cta-block__list {
+  margin-block: var(--grid-column-spacing);
+}
+
+.service-cta-block__list-item {
+  margin-block-end: var(--grid-column-spacing);
+}

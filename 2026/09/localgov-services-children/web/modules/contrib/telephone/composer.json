@@ -1,0 +1,14 @@
+{
+  "name": "drupal/telephone",
+  "description": "Defines a field type for telephone numbers.",
+  "type": "drupal-module",
+  "license": "GPL-2.0-or-later",
+  "homepage": "https://drupal.org/project/telephone",
+  "support": {
+    "issues": "https://drupal.org/project/issues/telephone",
+    "source": "https://git.drupalcode.org/project/telephone"
+  },
+  "require": {
+    "drupal/core": "^11.3 || ^12"
+  }
+}

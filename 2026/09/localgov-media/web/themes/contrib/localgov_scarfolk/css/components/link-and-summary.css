@@ -1,0 +1,13 @@
+.link-block {
+  padding: var(--grid-column-spacing);
+  border: var(--border);
+  background-color: var(--color-grey-lightest);
+}
+
+.link-block__title-wrapper {
+  align-items: start;
+}
+
+.link-block__title-icon {
+  margin-block-start: var(--spacing-smaller);
+}

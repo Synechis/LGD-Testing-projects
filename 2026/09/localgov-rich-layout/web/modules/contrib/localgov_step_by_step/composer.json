@@ -1,0 +1,33 @@
+{
+    "name": "drupal/localgov_step_by_step",
+    "description": "LocalGovDrupal distribution: Gov.uk style Step By Step navigation.",
+    "type": "drupal-module",
+    "homepage": "https://www.drupal.org/project/localgov_step_by_step",
+    "license": "GPL-2.0-or-later",
+    "minimum-stability": "dev",
+    "require": {
+        "drupal/localgov_core": "^2.12 || ^3.0",
+        "drupal/preview_link": "^2.1@alpha"
+    },
+    "require-dev": {
+        "drupal/localgov_base": "^2.2",
+        "drupal/localgov_search": "^1.2",
+        "drupal/localgov_services": "^2.1",
+        "drupal/localgov_topics": "^1.0",
+        "drupal/pathauto": "^1.6"
+    },
+    "extra": {
+        "composer-exit-on-patch-failure": true,
+        "patchLevel": {
+            "drupal/core": "-p2"
+        },
+        "patches": {
+            "drupal/preview_link": {
+                "Automatically populating multiple preview link entities #3439968": "https://www.drupal.org/files/issues/2026-09-04/3439968-9.patch",
+                "Add a 'copy to clipboard' feature for preview_link": "https://www.drupal.org/files/issues/2024-08-15/3449121-10.patch",
+                "References to other entities being previewed don't display #3481523": "https://www.drupal.org/files/issues/2026-09-07/3481523-10.patch",
+                "Set Preview Link expiry in days #3510967": "https://www.drupal.org/files/issues/2025-03-11/3510967-4.patch"
+            }
+        }
+    }
+}

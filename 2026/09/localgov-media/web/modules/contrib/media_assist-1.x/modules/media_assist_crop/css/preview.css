@@ -1,0 +1,104 @@
+.media-assist-crop-preview-wrapper {
+  --media-assist-crop-ink: #1b1b1b;
+  --media-assist-crop-quiet: #595959;
+  --media-assist-crop-line: #949494;
+  --media-assist-crop-set: #14624a;
+
+  max-inline-size: 80rem;
+}
+
+.media-assist-crop-preview__summary {
+  margin-block-end: 0.25rem;
+  color: var(--media-assist-crop-ink);
+}
+
+.media-assist-crop-preview__note {
+  margin-block: 0 1.5rem;
+  color: var(--media-assist-crop-quiet);
+}
+
+.media-assist-crop-preview {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(16rem, 1fr));
+  align-items: start;
+  gap: 1.5rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.media-assist-crop-preview__item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  justify-content: space-between;
+  padding: 0.75rem;
+  border: 2px solid var(--media-assist-crop-line);
+  border-radius: 0.25rem;
+  background: #fff;
+}
+
+.media-assist-crop-preview__item.is-set {
+  border-color: var(--media-assist-crop-set);
+}
+
+.media-assist-crop-preview__figure {
+  margin: 0;
+}
+
+.media-assist-crop-preview__figure img {
+  display: block;
+  inline-size: 100%;
+  block-size: auto;
+}
+
+.media-assist-crop-preview__caption {
+  display: flex;
+  flex-direction: column;
+  gap: 0.125rem;
+  margin-block-start: 0.5rem;
+}
+
+.media-assist-crop-preview__label {
+  color: var(--media-assist-crop-ink);
+  font-weight: 700;
+}
+
+.media-assist-crop-preview__state {
+  color: var(--media-assist-crop-quiet);
+}
+
+.is-set .media-assist-crop-preview__state {
+  color: var(--media-assist-crop-set);
+  font-weight: 700;
+}
+
+.media-assist-crop-preview__style {
+  color: var(--media-assist-crop-quiet);
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 0.8125rem;
+  overflow-wrap: anywhere;
+}
+
+.media-assist-crop-preview__edit {
+  align-self: flex-start;
+  padding: 0.35em 0.75em;
+  text-decoration: none;
+  border: 2px solid currentColor;
+  border-radius: 0.25rem;
+}
+
+.media-assist-crop-preview__edit:hover {
+  text-decoration: underline;
+}
+
+.media-assist-crop-preview__edit:focus-visible {
+  outline: 3px solid #0071b8;
+  outline-offset: 2px;
+}
+
+@media (forced-colors: active) {
+  .media-assist-crop-preview__item {
+    border-color: CanvasText;
+  }
+}

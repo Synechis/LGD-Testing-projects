@@ -1,0 +1,19 @@
+.lgd-prev-next__link .lgd-icon {
+  position: relative;
+  transition: var(--transition-time);
+}
+
+.lgd-prev-next__link:hover .lgd-icon,
+.lgd-prev-next__link:focus-visible .lgd-icon {
+  transition: var(--transition-time);
+}
+
+.lgd-prev-next__link--prev:hover .lgd-icon,
+.lgd-prev-next__link--prev:focus-visible .lgd-icon {
+  transform: translateX(calc(-1 * var(--spacing-smallest)));
+}
+
+.lgd-prev-next__link--next:hover .lgd-icon,
+.lgd-prev-next__link--next:focus-visible .lgd-icon {
+  transform: translateX(var(--spacing-smallest));
+}

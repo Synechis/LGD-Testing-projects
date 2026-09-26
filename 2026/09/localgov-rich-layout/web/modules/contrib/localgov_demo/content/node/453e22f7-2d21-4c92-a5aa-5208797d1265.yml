@@ -1,0 +1,76 @@
+_meta:
+  version: '1.0'
+  entity_type: node
+  uuid: 453e22f7-2d21-4c92-a5aa-5208797d1265
+  bundle: localgov_publication_page
+  default_langcode: en
+  depends:
+    132505b8-a848-48ff-bd12-c74cdb09b5e8: user
+default:
+  revision_uid:
+    -
+      entity: 132505b8-a848-48ff-bd12-c74cdb09b5e8
+  status:
+    -
+      value: true
+  uid:
+    -
+      entity: 132505b8-a848-48ff-bd12-c74cdb09b5e8
+  title:
+    -
+      value: Principles
+  created:
+    -
+      value: 1719917096
+  promote:
+    -
+      value: false
+  sticky:
+    -
+      value: false
+  revision_translation_affected:
+    -
+      value: true
+  moderation_state:
+    -
+      value: published
+  path:
+    -
+      alias: /publications/publications-cover-page-demo-content/petitions-scheme-publications-demo-content-0
+      langcode: en
+      pathauto: 1
+  localgov_publication_content:
+    -
+      entity:
+        _meta:
+          version: '1.0'
+          entity_type: paragraph
+          uuid: e0bbdfe8-5d63-4dc2-8212-3dad2c92e378
+          bundle: localgov_text
+          default_langcode: en
+        default:
+          status:
+            -
+              value: true
+          created:
+            -
+              value: 1719917060
+          behavior_settings:
+            -
+              value:
+                layout_paragraphs:
+                  parent_uuid: null
+                  region: null
+          revision_translation_affected:
+            -
+              value: true
+          localgov_text:
+            -
+              value: '<p>2.1 The Council welcomes petitions, in paper form (see the form at the end of this document) or submitted via e-mail or through our e-petitions online<br>facility.&nbsp;</p><p>2.2 We will treat something as a petition if it is identified as being a petition, or if it seems to us that it is intended to be a petition. Valid petitions, whether received by post, by hand, by e-mail or submitted in person or via our e-petitions online facility, will be accepted in accordance with this Scheme.</p><p>2.3 A petition can be open for signature up to a maximum of 90 days, unless an extension is agreed with the petition organiser; most will be responded to<br>much sooner.</p><h2>Who can submit a petition (H2 - to provide an addtional left hand navigation link)</h2><p>3.1 Anybody who lives, works or studies in the borough may organise, submit or sign a petition.</p>'
+              format: wysiwyg
+  localgov_published_date:
+    -
+      value: '2024-07-02'
+  localgov_updated_date:
+    -
+      value: '2024-07-02'

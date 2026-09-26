@@ -1,0 +1,7 @@
+.banner--primary .banner__content {
+  left: calc(var(--border-width-large) * -1); /* To counteract the border left. */
+  margin-block-end: var(--grid-column-spacing);
+  border: var(--border-large);
+  border-color: var(--color-white);
+  margin-inline: 0;
+}

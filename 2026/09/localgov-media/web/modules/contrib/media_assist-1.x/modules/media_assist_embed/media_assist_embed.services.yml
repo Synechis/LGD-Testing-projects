@@ -1,0 +1,4 @@
+services:
+  media_assist_embed.view_mode_shapes:
+    class: Drupal\media_assist_embed\Service\ViewModeShapes
+    arguments: ['@entity_type.manager', '@breakpoint.manager', '@media_assist.image_style_reader']

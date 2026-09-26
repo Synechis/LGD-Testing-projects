@@ -1,0 +1,17 @@
+parameters:
+    level: 5
+    fileExtensions:
+        - php
+        - module
+        - inc
+        - install
+        - theme
+        - profile
+    excludePaths:
+        - src/Plugin/PreviewLinkAutopopulate
+    reportUnmatchedIgnoredErrors: false
+    ignoreErrors:
+        # new static() is a best practice in Drupal, so we cannot fix that.
+        - "#^Unsafe usage of new static#"
+        # Disable PHPUnit dynamic call until core decision - https://www.drupal.org/project/drupal/issues/3029358
+        - '#Dynamic call to static method PHPUnit\\Framework\\.*#'

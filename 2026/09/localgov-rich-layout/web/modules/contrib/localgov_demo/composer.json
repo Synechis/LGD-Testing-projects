@@ -1,0 +1,24 @@
+
+{
+    "name": "drupal/localgov_demo",
+    "description": "Example content for demonstrating the LocalGovDrupal distribution and to help with development.",
+    "type": "drupal-module",
+    "homepage": "https://www.drupal.org/project/localgov_demo",
+    "license": "GPL-2.0-or-later",
+    "minimum-stability": "dev",
+    "require": {
+        "drupal/default_content": "^2.0@alpha",
+        "drupal/localgov_alert_banner": "^1.2",
+        "drupal/localgov_core": "^2.12 || ^3.0",
+        "drupal/localgov_directories": "^3.0",
+        "drupal/localgov_events": "^3.0",
+        "drupal/localgov_guides": "^2.1",
+        "drupal/localgov_news": "^2.3",
+        "drupal/localgov_publications": "^1.0",
+        "drupal/localgov_search": "^1.2",
+        "drupal/localgov_services": "^2.1",
+        "drupal/localgov_step_by_step": "^2.1",
+        "drupal/localgov_subsites": "^2.3",
+        "drupal/localgov_workflows": "^1.2"
+   }
+}

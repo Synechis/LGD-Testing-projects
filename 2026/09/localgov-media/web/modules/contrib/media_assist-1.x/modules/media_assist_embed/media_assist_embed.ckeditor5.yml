@@ -1,0 +1,13 @@
+media_assist_embed_shape_and_size:
+  ckeditor5:
+    plugins:
+      - mediaAssistEmbed.MediaAssistEmbed
+  drupal:
+    label: 'Media embed shape and size'
+    library: media_assist_embed/ckeditor5
+    class: Drupal\media_assist_embed\Plugin\CKEditor5Plugin\ShapeAndSize
+    elements: false
+    conditions:
+      filter: media_embed
+      plugins:
+        - media_media

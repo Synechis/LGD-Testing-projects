@@ -1,0 +1,106 @@
+<?php
+
+/**
+ * @file
+ * Install functions for the LocalGovInstall installation profile.
+ */
+
+use Drupal\views\Entity\View;
+
+/**
+ * Implements hook_install().
+ *
+ * Perform actions to set up the site for this profile.
+ *
+ * @see system_install()
+ */
+function localgov_install() {
+
+  $config_factory = \Drupal::configFactory();
+
+  // Disable the frontpage view.
+  $frontpage_view = View::load('frontpage');
+  $frontpage_view->setStatus(FALSE)->save();
+
+  // Set front page to /user.
+  // This is so there is a default accessible front page on first install.
+  $system_site_config = $config_factory->getEditable('system.site');
+  $system_site_config->set('page.front', '/user')->save();
+
+  // Enable entity_usage for media by default.
+  $entity_usage_config = $config_factory->getEditable('entity_usage.settings');
+  $local_task_enabled_entity_types = $entity_usage_config->get('local_task_enabled_entity_types');
+  if (!in_array('media', $local_task_enabled_entity_types, TRUE)) {
+    $local_task_enabled_entity_types[] = 'media';
+    $entity_usage_config->set('local_task_enabled_entity_types', $local_task_enabled_entity_types);
+    $entity_usage_config->save(TRUE);
+  }
+}
+
+/**
+ * Run the potentially skipped search_api_update_8107() safely.
+ */
+function localgov_update_8201() {
+  // Superseded by search_api_update_8110().
+  //
+  // Sites that have run this update, will get updated by 8110.
+  // Sites that have not run this update will also get 8110 and shouldn't risk
+  // running this version after search_api_update_8110.
+}
+
+/**
+ * Enable stable9 theme if localgov_base theme is enabled.
+ */
+function localgov_update_9501() {
+
+  if (\Drupal::service('theme_handler')->themeExists('localgov_base')) {
+    \Drupal::service('theme_installer')->install(['stable9']);
+  }
+}
+
+/**
+ * Update default date formats to GDS if they haven't been changed.
+ */
+function localgov_update_9502() {
+  $config_factory = \Drupal::configFactory();
+  $config = $config_factory->getEditable('core.date_format.long');
+  if ($config->get('pattern') == 'l j F Y - g:ia') {
+    $config->set('pattern', 'l j F Y \a\t g:ia');
+    $config->save(TRUE);
+  }
+  $config = $config_factory->getEditable('core.date_format.medium');
+  if ($config->get('pattern') == 'D, d/m/Y - g:ia') {
+    $config->set('pattern', 'D d/m/Y g:ia');
+    $config->save(TRUE);
+  }
+  $config = $config_factory->getEditable('core.date_format.short');
+  if ($config->get('pattern') == 'd/m/Y - g:ia') {
+    $config->set('pattern', 'd/m/Y g:ia');
+    $config->save(TRUE);
+  }
+}
+
+/**
+ * Update existing sites to use entity_usage for media.
+ */
+function localgov_update_9503() {
+  if (\Drupal::service('module_handler')->moduleExists('entity_usage')) {
+    $config_factory = \Drupal::configFactory();
+    $entity_usage_config = $config_factory->getEditable('entity_usage.settings');
+    $local_task_enabled_entity_types = $entity_usage_config->get('local_task_enabled_entity_types');
+    if (!in_array('media', $local_task_enabled_entity_types, TRUE)) {
+      $local_task_enabled_entity_types[] = 'media';
+      $entity_usage_config->set('local_task_enabled_entity_types', $local_task_enabled_entity_types);
+      $entity_usage_config->save(TRUE);
+    }
+  }
+}
+
+/**
+ * Disable HTML5 form validation by default.
+ *
+ * To re-enable client side validation disable the module.
+ */
+function localgov_update_9504(): void {
+  \Drupal::service('module_installer')->install(['disable_html5_validation']);
+}

@@ -1,0 +1,10 @@
+entity.localgov_service_contact.edit_form:
+  route_name: entity.localgov_service_contact.edit_form
+  group: localgov_service_contact
+  title: 'Edit'
+
+entity.localgov_service_contact.delete_form:
+  route_name: entity.localgov_service_contact.delete_form
+  group: localgov_service_contact
+  title: 'Delete'
+  weight: 10

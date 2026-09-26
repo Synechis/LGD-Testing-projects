@@ -1,0 +1,14 @@
+@media screen and (min-width: 48rem) {
+  .localgov-featured-news {
+    display: flex;
+    flex-wrap: wrap;
+    margin-right: -0.5rem;
+    margin-left: -0.5rem;
+  }
+
+  .localgov-featured-news > article {
+    width: calc(100% / 3 - 1rem);
+    margin-right: 0.5rem;
+    margin-left: 0.5rem;
+  }
+}

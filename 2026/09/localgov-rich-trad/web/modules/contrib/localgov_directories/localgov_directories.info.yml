@@ -1,0 +1,26 @@
+name: 'LocalGov Directories'
+type: module
+description: 'Provides a directory facets entity.'
+package: LocalGov Drupal
+core_version_requirement: ^10.2 || ^11
+dependencies:
+  - drupal:address
+  - drupal:block
+  - drupal:image
+  - drupal:link
+  - drupal:media
+  - drupal:node
+  - drupal:path
+  - drupal:telephone
+  - drupal:views
+  - pathauto:pathauto
+  - search_api:search_api
+  - facets:facets
+  - localgov_core:localgov_core
+  - localgov_core:localgov_media
+configure: entity.localgov_directories_facets_type.collection
+
+# Information added by Drupal.org packaging script on 2026-09-07
+version: '3.5.4'
+project: 'localgov_directories'
+datestamp: 1788779385

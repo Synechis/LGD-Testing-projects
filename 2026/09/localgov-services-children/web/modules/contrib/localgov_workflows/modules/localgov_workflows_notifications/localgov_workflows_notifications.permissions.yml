@@ -1,0 +1,12 @@
+administer localgov_service_contact:
+  title: 'Administer service contacts'
+view localgov_service_contact:
+  title: 'View service contact'
+edit localgov_service_contact:
+  title: 'Edit service contact'
+delete localgov_service_contact:
+  title: 'Delete service contact'
+create localgov_service_contact:
+  title: 'Create service contact'
+administer localgov_workflows_notifications:
+  title: 'Administer LocalGov workflow notifications'

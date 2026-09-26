@@ -1,0 +1,15 @@
+name: 'Geo Entity: Area'
+type: module
+description: 'Geo bundle for storing polygons.'
+package: Geo
+core_version_requirement: ^10 || ^11
+dependencies:
+  - geo_entity:geo_entity
+  - geocoder:geocoder
+  - geocoder:geocoder_geofield
+  - geocoder:geocoder_field
+
+# Information added by Drupal.org packaging script on 2026-04-03
+version: '1.1.2'
+project: 'geo_entity'
+datestamp: 1775224426

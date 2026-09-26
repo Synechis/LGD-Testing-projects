@@ -1,0 +1,22 @@
+services:
+  group_alert_banner.route_subscriber:
+    class: 'Drupal\group_alert_banner\Routing\RouteSubscriber'
+    tags:
+      - { name: 'event_subscriber' }
+
+  # Hooks
+  Drupal\group_alert_banner\Hook\BlockHooks:
+    class: Drupal\group_alert_banner\Hook\BlockHooks
+    autowire: true
+
+  Drupal\group_alert_banner\Hook\EntityHooks:
+    class: Drupal\group_alert_banner\Hook\EntityHooks
+    autowire: true
+
+  Drupal\group_alert_banner\Hook\FormHooks:
+    class: Drupal\group_alert_banner\Hook\FormHooks
+    autowire: true
+
+  Drupal\group_alert_banner\Hook\LocalgovMicrositesHooks:
+    class: Drupal\group_alert_banner\Hook\LocalgovMicrositesHooks
+    autowire: true

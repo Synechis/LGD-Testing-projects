@@ -1,0 +1,136 @@
+<?php
+
+/**
+ * @file
+ * Contains localgov_alert_banner.module.
+ */
+
+declare(strict_types=1);
+
+use Drupal\Core\Cache\Cache;
+use Drupal\Core\Hook\Attribute\LegacyHook;
+use Drupal\Core\Routing\RouteMatchInterface;
+use Drupal\localgov_alert_banner\Hook\GinHooks;
+use Drupal\localgov_alert_banner\Hook\HelpHooks;
+use Drupal\localgov_alert_banner\Hook\ModuleHooks;
+use Drupal\localgov_alert_banner\Hook\ThemeHooks;
+use Drupal\user\RoleInterface;
+
+/**
+ * Implements hook_help().
+ */
+#[LegacyHook]
+function localgov_alert_banner_help($route_name, RouteMatchInterface $route_match): string|\Stringable|array|null {
+  return \Drupal::service(HelpHooks::class)->help($route_name, $route_match);
+}
+
+/**
+ * Implements hook_theme().
+ */
+#[LegacyHook]
+function localgov_alert_banner_theme(): array {
+  return \Drupal::service(ThemeHooks::class)->theme();
+}
+
+/**
+ * Implements hook_preprocess_localgov_alert_banner().
+ */
+#[LegacyHook]
+function localgov_alert_banner_preprocess_localgov_alert_banner(&$variables): void {
+
+  \Drupal::service(ThemeHooks::class)->preprocessLocalgovAlertBanner($variables);
+}
+
+/**
+ * Implements hook_theme_suggestions_HOOK().
+ */
+#[LegacyHook]
+function localgov_alert_banner_theme_suggestions_localgov_alert_banner(array $variables): array {
+  return \Drupal::service(ThemeHooks::class)->themeSuggestionsLocalgovAlertBanner($variables);
+}
+
+/**
+ * Implements hook_modules_installed().
+ */
+#[LegacyHook]
+function localgov_alert_banner_modules_installed($modules, $is_syncing): void {
+
+  \Drupal::service(ModuleHooks::class)->modulesInstalled($modules, $is_syncing);
+}
+
+/**
+ * Implements hook_preprocess_field().
+ */
+#[LegacyHook]
+function localgov_alert_banner_preprocess_field(&$variables): void {
+  \Drupal::service(ThemeHooks::class)->preprocessField($variables);
+}
+
+/**
+ * Implements hook_gin_content_form_routes().
+ */
+#[LegacyHook]
+function localgov_alert_banner_gin_content_form_routes(): array {
+  return \Drupal::service(GinHooks::class)->ginContentFormRoutes();
+}
+
+/* Private methods.
+ * @todo convert to class methods.
+ */
+
+/**
+ * Configure scheduled transitions.
+ */
+function localgov_alert_banner_configure_scheduled_transitions(): void {
+
+  // Configure scheduled transitions for alert banners.
+  $scheduled_transitions_config = \Drupal::service('config.factory')->getEditable('scheduled_transitions.settings');
+  $alert_banner_bundles = \Drupal::service('entity_type.bundle.info')->getBundleInfo('localgov_alert_banner');
+  $bundles = $scheduled_transitions_config->get('bundles');
+  foreach ($alert_banner_bundles as $bundle => $info) {
+    $bundles[] = [
+      'entity_type' => 'localgov_alert_banner',
+      'bundle' => $bundle,
+    ];
+  }
+  $scheduled_transitions_config->set('bundles', $bundles);
+  $scheduled_transitions_config->save();
+  Cache::invalidateTags([
+    'scheduled_transition_settings',
+    'config:scheduled_transitions.settings',
+  ]);
+
+  // Add scheduling permissions to the emergency publisher user.
+  $permissions = [];
+  foreach ($alert_banner_bundles as $bundle => $info) {
+    $permissions = array_merge($permissions, [
+      'add scheduled transitions localgov_alert_banner ' . $bundle,
+      'reschedule scheduled transitions localgov_alert_banner ' . $bundle,
+      'view scheduled transitions localgov_alert_banner ' . $bundle,
+    ]);
+  }
+  user_role_grant_permissions('emergency_publisher', $permissions);
+}
+
+/**
+ * Setup deafault permissions.
+ *
+ * @todo consider using hook_localgov_roles().
+ */
+function localgov_alert_banner_set_default_permissions(): void {
+
+  // Default grant permissions to view all alert banners.
+  user_role_grant_permissions(RoleInterface::ANONYMOUS_ID, ['view all localgov alert banner entities']);
+  user_role_grant_permissions(RoleInterface::AUTHENTICATED_ID, ['view all localgov alert banner entities']);
+
+  // Set up emergency publisher access to toolbar if certian modules exist.
+  $perms = [];
+  $module_handler = \Drupal::service('module_handler');
+  if ($module_handler->moduleExists('node')) {
+    $perms[] = 'access content overview';
+  }
+  if ($module_handler->moduleExists('toolbar')) {
+    $perms[] = 'access toolbar';
+  }
+  user_role_grant_permissions('emergency_publisher', $perms);
+}

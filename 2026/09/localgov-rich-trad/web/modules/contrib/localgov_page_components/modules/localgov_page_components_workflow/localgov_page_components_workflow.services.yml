@@ -1,0 +1,4 @@
+services:
+  Drupal\localgov_page_components_workflow\Hook\NodeHooks:
+    class: Drupal\localgov_page_components_workflow\Hook\NodeHooks
+    autowire: true

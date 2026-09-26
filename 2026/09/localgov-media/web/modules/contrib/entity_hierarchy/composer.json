@@ -1,0 +1,22 @@
+{
+    "name": "drupal/entity_hierarchy",
+    "description": "A module to extend entity-reference fields so that a hierarchy is maintained.",
+    "type": "drupal-module",
+    "require": {
+        "php": ">=8.1",
+        "drupal/core": "^10.1 || ~11",
+        "drupal/dbal": "~1.0 || ~2",
+        "previousnext/nested-set": "^0.1.1 || ~1 || ~2"
+    },
+    "require-dev": {
+        "drupal/workbench_access": "*"
+    },
+    "license": "GPL-2.0-or-later",
+    "extra": {
+        "drush": {
+            "services": {
+                "drush.services.yml": "^9"
+            }
+        }
+    }
+}

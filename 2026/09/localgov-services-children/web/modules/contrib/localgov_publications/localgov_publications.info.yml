@@ -1,0 +1,21 @@
+name: LocalGov Publications
+type: module
+description: HTML publications for the LocalGovDrupal distribution.
+package: LocalGov Drupal
+core_version_requirement: ^10 || ^11
+
+dependencies:
+  - book:book
+  - drupal:block
+  - drupal:menu_ui
+  - drupal:text
+  - drupal:views
+  - pathauto:pathauto
+  - localgov_core:localgov_media
+  - localgov_paragraphs:localgov_paragraphs
+  - localgov_paragraphs:localgov_paragraphs_layout
+
+# Information added by Drupal.org packaging script on 2026-07-21
+version: '1.1.5'
+project: 'localgov_publications'
+datestamp: 1784632533

@@ -1,0 +1,15 @@
+.facets-widget__list {
+  padding-inline-start: 0;
+}
+
+.facets-widget__list + * {
+  margin-block-start: var(--vertical-rhythm-spacing);
+}
+
+.facet-item + .facet-item {
+  margin-block-start: var(--vertical-rhythm-spacing);
+}
+
+.facet-item::marker {
+  color: transparent;
+}

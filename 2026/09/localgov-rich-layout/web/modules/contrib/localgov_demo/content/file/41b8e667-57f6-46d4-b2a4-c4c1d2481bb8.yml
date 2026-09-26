@@ -1,0 +1,29 @@
+_meta:
+  version: '1.0'
+  entity_type: file
+  uuid: 41b8e667-57f6-46d4-b2a4-c4c1d2481bb8
+  default_langcode: en
+  depends:
+    132505b8-a848-48ff-bd12-c74cdb09b5e8: user
+default:
+  uid:
+    -
+      entity: 132505b8-a848-48ff-bd12-c74cdb09b5e8
+  filename:
+    -
+      value: QkEEunsD9yDtv16Z4an185eESsofeOJgYavyQJpV1es.jpg
+  uri:
+    -
+      value: 'public://oembed_thumbnails/QkEEunsD9yDtv16Z4an185eESsofeOJgYavyQJpV1es.jpg'
+  filemime:
+    -
+      value: image/jpeg
+  filesize:
+    -
+      value: 19072
+  status:
+    -
+      value: true
+  created:
+    -
+      value: 1719917659

@@ -1,0 +1,14 @@
+name: 'LocalGov Workflows Notifications'
+type: module
+description: 'Send notifications to service contacts when content needs reviewing.'
+package: LocalGov Drupal
+core_version_requirement: ^10.2 || ^11
+dependencies:
+  - localgov_workflows:localgov_workflows
+  - symfony_mailer:symfony_mailer
+configure: localgov_workflows_notifications.settings
+
+# Information added by Drupal.org packaging script on 2026-09-07
+version: '1.6.1'
+project: 'localgov_workflows'
+datestamp: 1788780144

@@ -1,0 +1,13 @@
+name: LocalGov Utilities
+type: module
+description: 'Utility modules for the LocalGov Drupal distribution.'
+package: LocalGov Drupal
+core_version_requirement: ^10 || ^11
+dependencies:
+  - textfield_counter:textfield_counter
+hidden: true
+
+# Information added by Drupal.org packaging script on 2026-03-13
+version: '1.0.0'
+project: 'localgov_utilities'
+datestamp: 1773406899

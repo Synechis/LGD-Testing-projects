@@ -1,0 +1,26 @@
+.newsroom-teaser {
+  padding-block: var(--grid-column-spacing);
+  border: var(--border);
+  background-color: var(--color-grey-lightest);
+}
+
+.newsroom-teaser--has-image {
+  padding-block-start: 0;
+  border-block-start: none;
+}
+
+.newsroom-teaser > *:not(.newsroom-teaser__image) {
+  padding-inline: var(--grid-column-spacing);
+}
+
+.newsroom-teaser > * + * {
+  margin-block-start: var(--grid-column-spacing);
+}
+
+.newsroom-teaser__image {
+  margin-inline: calc(var(--border-width) * -1); /* To counteract the border on the parent. */
+}
+
+.newsroom-teaser__image img {
+  width: 100%;
+}

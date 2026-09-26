@@ -1,0 +1,10 @@
+name: Media Assist Crop
+description: 'Crop labels, summaries and previews for image media.'
+type: module
+package: Media
+core_version_requirement: ^10.3 || ^11
+dependencies:
+  - drupal:image
+  - drupal:media
+  - crop:crop
+  - media_assist:media_assist

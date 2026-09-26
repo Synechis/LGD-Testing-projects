@@ -1,0 +1,82 @@
+{
+    "name": "drupal/localgov",
+    "description": "LocalGovDrupal distribution",
+    "type": "drupal-profile",
+    "license": "GPL-2.0-or-later",
+    "homepage": "https://drupal.org/project/localgov",
+    "repositories": [
+        {
+            "type": "composer",
+            "url": "https://packages.drupal.org/8"
+        }
+    ],
+    "require": {
+        "drupal/admin_toolbar": "^3.0",
+        "drupal/core": "^11.0",
+        "drupal/gin": "^3.0 || ^4.0 || ^5.0",
+        "drupal/gin_login": "^2.0.3",
+        "drupal/gin_toolbar": "^1.0 || ^2.0 || ^3.0",
+        "drupal/entity_browser": "^2.9",
+        "drupal/disable_html5_validation": "^2.0",
+        "drupal/localgov_utilities": "^1.0@beta",
+        "drupal/masquerade": "^2.0",
+        "drupal/preview_link": "^2.1@alpha",
+        "drupal/redirect": "^1.12",
+        "drupal/simple_media_bulk_upload": "^2.0",
+        "drupal/simple_sitemap": "^4.1",
+        "drush/drush": ">=10",
+        "drupal/localgov_alert_banner": "^1.2.0",
+        "drupal/localgov_base": "^1.3.1 || ^2.0.0",
+        "drupal/localgov_content_lock": "^1.0.0",
+        "drupal/localgov_core": "^2.12.0 || ^3.0",
+        "drupal/localgov_demo": "^3.0@alpha",
+        "drupal/localgov_directories": "^3.0",
+        "drupal/localgov_events": "^3.0",
+        "drupal/localgov_guides": "^2.1.0",
+        "drupal/localgov_login_redirect": "^1.0.0",
+        "drupal/localgov_menu_link_group": "^1.1.0",
+        "drupal/localgov_news": "^2.3.0",
+        "drupal/localgov_openreferral": "^2.0@beta",
+        "drupal/localgov_paragraphs": "^2.3.0",
+        "drupal/localgov_scarfolk": "^2.0",
+        "drupal/localgov_search": "^1.2.0",
+        "drupal/localgov_services": "^2.1.0",
+        "drupal/localgov_step_by_step": "^2.1.0",
+        "drupal/localgov_subsites": "^2.3.0",
+        "drupal/localgov_workflows": "^1.2.0",
+        "php": ">=8.1.0"
+    },
+    "require-dev": {
+        "drupal/core-dev": "^11.0",
+        "drupal/geofield_map": "^11.1"
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "config": {
+        "sort-packages": true
+    },
+    "extra": {
+        "enable-patching": true,
+        "composer-exit-on-patch-failure": true,
+        "patchLevel": {
+            "drupal/core": "-p2"
+        },
+        "patches": {
+            "drupal/core": {
+                "Users can't reference unpublished content even when they have access to it. See https://www.drupal.org/project/drupal/issues/2845144": "https://www.drupal.org/files/issues/2025-06-24/2845144-109.patch"
+            },
+            "drupal/preview_link": {
+                "Automatically populating multiple preview link entities #3439968": "https://www.drupal.org/files/issues/2026-09-04/3439968-9.patch",
+                "Add a 'copy to clipboard' feature for preview_link": "https://www.drupal.org/files/issues/2024-08-15/3449121-10.patch",
+                "References to other entities being previewed don't display #3481523": "https://www.drupal.org/files/issues/2026-09-07/3481523-10.patch",
+                "Set Preview Link expiry in days #3510967": "https://www.drupal.org/files/issues/2025-03-11/3510967-4.patch"
+            },
+            "drupal/pathauto": {
+                "Allow path generation inside of a workspace - and importantly don't regenerate when publishing space https://www.drupal.org/project/pathauto/issues/3283769": "https://www.drupal.org/files/issues/2024-04-08/3283769-10.patch"
+            },
+            "drupal/redirect": {
+                "Create redirect from path alias change and workspaces https://www.drupal.org/project/redirect/issues/3431260": "https://www.drupal.org/files/issues/2024-03-18/3431260.patch"
+            }
+        }
+    }
+}

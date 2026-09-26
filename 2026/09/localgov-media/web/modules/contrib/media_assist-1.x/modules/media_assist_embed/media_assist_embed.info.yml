@@ -1,0 +1,12 @@
+name: Media Assist Embed
+description: 'Shape and size controls for the CKEditor media embed.'
+type: module
+package: Media
+core_version_requirement: ^10.3 || ^11
+dependencies:
+  - drupal:breakpoint
+  - drupal:ckeditor5
+  - drupal:filter
+  - drupal:image
+  - drupal:media
+  - media_assist:media_assist

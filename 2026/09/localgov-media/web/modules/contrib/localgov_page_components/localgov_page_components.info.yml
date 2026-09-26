@@ -1,0 +1,16 @@
+name: 'LocalGov Page Components'
+type: module
+description: 'Disguise "Paragraphs library" as "Page components" for better UX.'
+core_version_requirement: ^10 || ^11
+package: 'LocalGov Drupal'
+dependencies:
+  - entity_browser:entity_browser
+  - entity_browser:entity_browser_entity_form
+  - inline_entity_form:inline_entity_form
+  - linkit:linkit
+  - paragraphs:paragraphs_library
+
+# Information added by Drupal.org packaging script on 2026-07-14
+version: '1.4.1'
+project: 'localgov_page_components'
+datestamp: 1784028922

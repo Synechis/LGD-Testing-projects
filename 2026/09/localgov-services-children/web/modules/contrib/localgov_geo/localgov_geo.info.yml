@@ -1,0 +1,12 @@
+name: LocalGov Geo
+type: module
+description: 'Entity for storing geodata, with location and geocoding.'
+package: LocalGov Drupal
+core_version_requirement: ^10 || ^11
+dependencies:
+  - geo_entity:geo_entity
+
+# Information added by Drupal.org packaging script on 2026-02-05
+version: '2.1.1'
+project: 'localgov_geo'
+datestamp: 1770301883

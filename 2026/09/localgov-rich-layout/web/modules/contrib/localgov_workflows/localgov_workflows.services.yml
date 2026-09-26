@@ -1,0 +1,5 @@
+services:
+  localgov_workflows.route_subscriber:
+    class: Drupal\localgov_workflows\EventSubscriber\TitleChangerRouteSubscriber
+    tags:
+      - { name: event_subscriber }

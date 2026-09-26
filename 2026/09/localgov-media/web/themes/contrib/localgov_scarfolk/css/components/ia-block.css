@@ -1,0 +1,5 @@
+.ia-block {
+  padding: var(--grid-column-spacing);
+  border: var(--border);
+  background-color: var(--color-grey-lightest);
+}

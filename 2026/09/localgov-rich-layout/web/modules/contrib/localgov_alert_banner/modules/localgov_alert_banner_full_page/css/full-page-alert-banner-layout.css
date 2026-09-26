@@ -1,0 +1,27 @@
+/**
+ * Layout rules for the Full page alert banner.
+ */
+
+.localgov-alert-banner-full::backdrop {
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.localgov-alert-banner-full.localgov-alert-banner--notable-person::backdrop {
+  background: rgba(0, 0, 0, 1);
+}
+
+.localgov-alert-banner-full h1 {
+  color: inherit;
+}
+
+.localgov-alert-banner-full > .localgov-alert-banner-full__centered {
+  overflow-x: none;
+  overflow-y: auto;
+  max-width: 62.5rem;
+  margin: auto;
+}
+
+.localgov-alert-banner-full__centered > * + *,
+.localgov-alert-banner-full__content > * + * {
+  margin-top: 1.5rem;
+}

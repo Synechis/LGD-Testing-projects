@@ -1,0 +1,14 @@
+name: 'LocalGov Search Solr'
+description: 'Default solr index and configuration for Sitewide search for LocalGov Drupal'
+core_version_requirement: ^10 || ^11
+type: module
+package: LocalGov Drupal
+
+dependencies:
+  - localgov_search:localgov_search
+  - search_api_solr:search_api_solr
+
+# Information added by Drupal.org packaging script on 2026-03-16
+version: '1.2.1'
+project: 'localgov_search_solr'
+datestamp: 1773681879

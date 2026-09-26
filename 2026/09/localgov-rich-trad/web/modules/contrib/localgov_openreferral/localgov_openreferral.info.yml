@@ -1,0 +1,18 @@
+name: Open Referral
+type: module
+description: Support for modules creating Open Referral UK endpoints.
+package: LocalGov Drupal
+core_version_requirement: ^10 || ^11
+dependencies:
+  - drupal:serialization
+  - drupal:rest
+  - drupal:views
+  - search_api:search_api
+  - search_api:search_api_db
+  - facets:facets
+  - geo_entity:geo_entity_address
+
+# Information added by Drupal.org packaging script on 2026-03-17
+version: '2.1.1'
+project: 'localgov_openreferral'
+datestamp: 1773748864

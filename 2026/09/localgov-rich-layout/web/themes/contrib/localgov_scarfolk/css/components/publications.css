@@ -1,0 +1,28 @@
+.localgov-publication-cover-page .publication-document {
+  margin-block-end: 0;
+}
+
+.localgov-publication-cover-page .field--name-localgov-documents,
+.localgov-publication-cover-page .field--name-localgov-publication-content {
+  margin-block-start: var(--grid-column-spacing);
+  padding-block-start: var(--grid-column-spacing);
+  border-block-start: var(--border);
+}
+
+.localgov-publication-cover-page .field--name-localgov-documents .publication-document__thumbnail-image {
+  height: 75px;
+}
+
+.block-localgov-publications-page-header-block .lgd-page-title-block__published,
+.block-localgov-publications-page-header-block .lgd-page-title-block__updated {
+  max-width: 500px;
+  border: var(--border);
+  border-block-end: 0;
+  background-color: var(--color-grey-lightest);
+  padding-block: var(--spacing);
+  padding-inline: var(--grid-column-spacing);
+}
+
+.localgov-publication-page .lgd-prev-next {
+  margin-block-start: var(--grid-column-spacing);
+}

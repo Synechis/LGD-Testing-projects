@@ -1,0 +1,5 @@
+.lgd-image .field--name-localgov-caption {
+  border: var(--border);
+  border-block-start: 0;
+  background-color: var(--color-grey-lightest);
+}

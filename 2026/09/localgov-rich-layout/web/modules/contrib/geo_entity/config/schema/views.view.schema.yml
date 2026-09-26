@@ -1,0 +1,3 @@
+views.view.geo_entity_library:
+  type: views.view.default
+  label: 'Geo Entity Library view'

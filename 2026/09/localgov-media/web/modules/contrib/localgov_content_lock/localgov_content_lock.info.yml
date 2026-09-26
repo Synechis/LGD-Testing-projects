@@ -1,0 +1,12 @@
+name: LocalGov Content Lock
+type: module
+description: Customises the Content Lock module for use with LocalGov Drupal
+package: LocalGov Drupal
+core_version_requirement: ^10.2 || ^11
+dependencies:
+  - content_lock:content_lock
+
+# Information added by Drupal.org packaging script on 2026-07-28
+version: '1.2.0'
+project: 'localgov_content_lock'
+datestamp: 1785239522

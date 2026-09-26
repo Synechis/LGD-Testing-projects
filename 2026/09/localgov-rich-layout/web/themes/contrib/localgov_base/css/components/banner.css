@@ -1,0 +1,38 @@
+.banner {
+  position: relative;
+}
+
+.banner__image img {
+  width: 100%;
+  min-height: 300px;
+  object-fit: cover;
+}
+
+.banner--primary .banner__content {
+  position: relative;
+  max-width: var(--banner-content-width);
+  margin: calc(var(--banner-content-margin) * -1) auto var(--banner-content-margin);
+  padding: var(--banner-content-padding);
+  color: var(--banner-content-text-color);
+  background-color: var(--banner-content-bg-color);
+}
+
+.banner--primary .field--name-localgov-title {
+  font-size: var(--banner-title-size);
+}
+
+.banner__link {
+  text-underline-offset: 5px;
+  text-decoration-thickness: 2px;
+  color: var(--color-banner-title-link);
+}
+
+.banner__link.banner__link:focus,
+.banner__link:hover {
+  text-decoration: none;
+  color: var(--color-banner-title-link-hover);
+}
+.banner__link.banner__link:focus-visible {
+  outline: 2px dashed var(--color-banner-title-link-hover);
+  outline-offset: 2px;
+}

@@ -1,0 +1,26 @@
+<?php
+
+/**
+ * @file
+ * Theme functions for the LocalGov Drupal Scarfolk Council theme.
+ */
+
+/**
+ * Implements hook_views_pre_render().
+ */
+function localgov_scarfolk_views_pre_render($view) {
+  // Attach the events library to the events view.
+  if ($view->id() === 'localgov_events_listing') {
+    $view->element['#attached']['library'][] = 'localgov_scarfolk/events';
+  }
+}
+
+/**
+ * Implements hook_preprocess_HOOK() for node templates.
+ */
+function localgov_scarfolk_preprocess_node(&$variables) {
+  // Attach the publications library to publication nodes.
+  if ($variables['node']->bundle() === 'localgov_publication_page' || $variables['node']->bundle() === 'localgov_publication_cover_page') {
+    $variables['#attached']['library'][] = 'localgov_scarfolk/publications';
+  }
+}

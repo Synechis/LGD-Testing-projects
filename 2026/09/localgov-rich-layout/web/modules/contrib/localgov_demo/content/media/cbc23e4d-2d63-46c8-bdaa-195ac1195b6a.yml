@@ -1,0 +1,32 @@
+_meta:
+  version: '1.0'
+  entity_type: media
+  uuid: cbc23e4d-2d63-46c8-bdaa-195ac1195b6a
+  bundle: remote_video
+  default_langcode: en
+  depends:
+    132505b8-a848-48ff-bd12-c74cdb09b5e8: user
+default:
+  status:
+    -
+      value: true
+  uid:
+    -
+      entity: 132505b8-a848-48ff-bd12-c74cdb09b5e8
+  name:
+    -
+      value: 'How to use Publications in LocalGov Drupal'
+  created:
+    -
+      value: 1719917699
+  revision_translation_affected:
+    -
+      value: true
+  path:
+    -
+      alias: ''
+      langcode: en
+      pathauto: 0
+  field_media_oembed_video:
+    -
+      value: 'https://www.youtube.com/watch?v=E_0_YojAiGs&list=PLibxxY4DUV2pf70Py14VEbOeQUtgPXKAn&index=12'

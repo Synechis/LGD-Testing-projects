@@ -1,0 +1,11 @@
+{
+    "name": "drupal/localgov_utilities",
+    "description": "Utility modules for the LocalGov Drupal distribution.",
+    "type": "drupal-module",
+    "homepage": "https://www.drupal.org/project/localgov_utilities",
+    "license": "GPL-2.0-or-later",
+    "minimum-stability": "dev",
+    "require": {
+        "drupal/textfield_counter": "^2.4"
+    }
+}

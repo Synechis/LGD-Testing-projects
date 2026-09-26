@@ -1,0 +1,12 @@
+{
+    "name": "drupal/localgov_search_solr",
+    "description": "Configuration for Solr backend for LocalGov Drupal sitewide search.",
+    "type": "drupal-module",
+    "homepage": "https://www.drupal.org/project/localgov_search_solr",
+    "license": "GPL-2.0-or-later",
+    "minimum-stability": "dev",
+    "require": {
+        "drupal/localgov_search": "^1.2",
+        "drupal/search_api_solr": "^4.2"
+    }
+}

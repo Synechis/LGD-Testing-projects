@@ -1,0 +1,10 @@
+name: 'Group config test'
+description: 'Configuration import test module for the localgov_menu_link_group config entity.'
+type: module
+package: Testing
+core_version_requirement: ^10 || ^11
+
+# Information added by Drupal.org packaging script on 2025-12-01
+version: '1.2.0'
+project: 'localgov_menu_link_group'
+datestamp: 1764604970

@@ -1,0 +1,76 @@
+<?php
+
+/**
+ * @file
+ * Primary module hooks for Open Referral module.
+ */
+
+use Drupal\Core\Cache\Cache;
+use Drupal\Core\Entity\EntityInterface;
+use Drupal\localgov_openreferral\Entity\PropertyMappingInterface;
+use Drupal\localgov_openreferral\Entity\PropertyMappingStorage;
+use Drupal\localgov_openreferral\SearchApiIndexConfig;
+use Drupal\rest\Plugin\views\display\RestExport;
+use Drupal\views\ViewExecutable;
+
+/**
+ * Implements hook_entity_insert().
+ */
+function localgov_openreferral_localgov_openreferral_mapping_insert(PropertyMappingInterface $map) {
+  if ($map->getPublicType() == 'service') {
+    \Drupal::service('class_resolver')
+      ->getInstanceFromDefinition(SearchApiIndexConfig::class)
+      ->addToServicesIndex($map);
+  }
+}
+
+/**
+ * Implements hook_entity_delete().
+ */
+function localgov_openreferral_localgov_openreferral_mapping_delete(PropertyMappingInterface $map) {
+  if ($map->mappedEntityType() == 'node') {
+    \Drupal::service('class_resolver')
+      ->getInstanceFromDefinition(SearchApiIndexConfig::class)
+      ->removeFromServicesIndex($map);
+  }
+}
+
+/**
+ * Implements hook_entity_presave().
+ */
+function localgov_openreferral_entity_presave(EntityInterface $entity) {
+  // If the entity is one that can appear in the Views services list invalidate
+  // that tag. search_api_list:openreferral_services.
+  // Search API does a reasonable job of clearing the list if it is a referenced
+  // entity in the list; but not if it's not explicitly in the search index and
+  // just something that gets rendered as referenced.
+  //
+  // Having the bubbleable caching metadata ala jsonapi #15 would probably
+  // negate the need to do this, as long as the render plugin passes it on.
+  $mapping_storage = \Drupal::entityTypeManager()->getStorage('localgov_openreferral_mapping');
+  assert($mapping_storage instanceof PropertyMappingStorage);
+  if ($mapping_storage->loadByIds($entity->getEntityTypeId(), $entity->bundle())) {
+    Cache::invalidateTags(['search_api_list:openreferral_services']);
+  }
+}
+
+/**
+ * Implements hook_views_pre_view().
+ */
+function localgov_openreferral_views_pre_view(ViewExecutable $view, $display_id, array &$args): void {
+  // If this is an open referral json output view
+  // and if the query sets the items per page
+  // alter the pager if it exists to use than number.
+  $request = $view->getRequest();
+  if ((strpos($request->getPathInfo(), '/openreferral/v1') === 0) &&
+    ($per_page = $request->query->get('per_page')) &&
+    ($display_handler = $view->display_handler) &&
+    ($display_handler instanceof RestExport)
+  ) {
+    $pager = $display_handler->getOption('pager');
+    if (is_array($pager) && isset($pager['options']['items_per_page'])) {
+      $pager['options']['items_per_page'] = $per_page;
+      $display_handler->setOption('pager', $pager);
+    }
+  }
+}

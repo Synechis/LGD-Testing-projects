@@ -1,0 +1,16 @@
+name: Entity Hierarchy
+description: A module to extend entity-reference fields so that a hierarchy is maintained.
+package: "Entity Hierarchy"
+core_version_requirement: ^10.1 || ^11
+php: 8.1
+type: module
+dependencies:
+  - drupal:node
+  - dbal:dbal
+test_dependencies:
+  - workbench_access:workbench_access
+
+# Information added by Drupal.org packaging script on 2026-05-03
+version: '3.3.15'
+project: 'entity_hierarchy'
+datestamp: 1777849390

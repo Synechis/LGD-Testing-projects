@@ -1,0 +1,81 @@
+.service-statuses {
+  margin-block-end: var(--spacing);
+  padding: var(--service-statuses-padding);
+  background-color: var(--service-statuses-container-bg-color);
+}
+
+.service-statuses__header,
+.service-statuses__title {
+  display: flex;
+  align-items: center;
+  color: var(--service-statuses-container-text-color);
+}
+
+.service-statuses__header {
+  justify-content: space-between;
+  padding-block-end: var(--service-statuses-padding);
+}
+
+.service-statuses__label {
+  margin-block-end: 0;
+  color: var(--service-statuses-container-text-color);
+}
+
+.service-statuses__link {
+  display: inline-flex;
+  align-items: center;
+  color: var(--service-statuses-container-text-color);
+}
+
+.service-statuses__link--bottom {
+  margin-block-start: var(--service-statuses-padding);
+}
+
+.service-statuses .lgd-icon {
+  display: inline-block;
+  margin-inline-end: var(--spacing-smaller);
+}
+
+.service-statuses .lgd-icon path {
+  fill: var(--service-statuses-container-text-color);
+}
+
+.service-statuses-list {
+  margin-block-end: 0;
+  padding: var(--service-statuses-padding);
+  background-color: var(--service-statuses-list-bg-color);
+}
+
+.service-statuses-list__item::marker {
+  color: transparent;
+}
+
+.service-statuses-list__item + .service-statuses-list__item {
+  margin-block-start: var(--service-statuses-list-spacing);
+  padding-block-start: var(--service-statuses-list-spacing);
+  border-color: var(--service-statuses-list-border-color);
+  border-block-start: var(--service-statuses-list-border);
+}
+
+.service-status .nav-tabs .nav-item .nav-link.active .service-status-title {
+  background-color: var(--color-focus);
+}
+
+.service-status .card .card-header .status-accordion-header:hover,
+.service-status .card .card-header .status-accordion-header:focus,
+.service-status .nav-tabs .nav-item .nav-link .service-status-title:hover,
+.service-status .nav-tabs .nav-item .nav-link .service-status-title:focus,
+.service-status .nav-tabs .nav-item .nav-link:hover .service-status-title,
+.service-status .nav-tabs .nav-item .nav-link:focus .service-status-title {
+  background-color: var(--color-focus);
+}
+
+.service-status .nav-tabs .nav-item .nav-link.active:hover .service-status-title,
+.service-status .nav-tabs .nav-item .nav-link.active:focus .service-status-title {
+  text-decoration: underline;
+}
+
+.service-status .card .card-header a:focus-visible {
+  outline: 2px dashed var(--color-accent);
+  outline-offset: 3px;
+}

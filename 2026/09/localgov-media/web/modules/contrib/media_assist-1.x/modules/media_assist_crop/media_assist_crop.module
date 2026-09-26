@@ -1,0 +1,77 @@
+<?php
+
+/**
+ * @file
+ * Procedural hook implementations, used before Drupal 11.1.
+ */
+
+declare(strict_types=1);
+
+use Drupal\Core\Form\FormStateInterface;
+use Drupal\Core\Hook\Attribute\LegacyHook;
+use Drupal\crop\CropInterface;
+use Drupal\media_assist_crop\Hook\CropAssistHooks;
+
+/**
+ * Implements hook_preprocess_HOOK() for image-formatter.html.twig.
+ */
+#[LegacyHook]
+function media_assist_crop_preprocess_image_formatter(array &$variables): void {
+  \Drupal::service(CropAssistHooks::class)->preprocessImageFormatter($variables);
+}
+
+/**
+ * Implements hook_preprocess_HOOK() for responsive-image.html.twig.
+ */
+#[LegacyHook]
+function media_assist_crop_preprocess_responsive_image(array &$variables): void {
+  \Drupal::service(CropAssistHooks::class)->preprocessResponsiveImage($variables);
+}
+
+/**
+ * Implements hook_page_attachments().
+ */
+#[LegacyHook]
+function media_assist_crop_page_attachments(array &$attachments): void {
+  \Drupal::service(CropAssistHooks::class)->pageAttachments($attachments);
+}
+
+/**
+ * Implements hook_form_alter().
+ */
+#[LegacyHook]
+function media_assist_crop_form_alter(array &$form, FormStateInterface $form_state, string $form_id): void {
+  \Drupal::service(CropAssistHooks::class)->formAlter($form, $form_state, $form_id);
+}
+
+/**
+ * Implements hook_theme().
+ */
+#[LegacyHook]
+function media_assist_crop_theme(): array {
+  return \Drupal::service(CropAssistHooks::class)->theme();
+}
+
+/**
+ * Implements hook_ENTITY_TYPE_insert() for crop.
+ */
+#[LegacyHook]
+function media_assist_crop_crop_insert(CropInterface $crop): void {
+  \Drupal::service(CropAssistHooks::class)->cropInsert($crop);
+}
+
+/**
+ * Implements hook_ENTITY_TYPE_update() for crop.
+ */
+#[LegacyHook]
+function media_assist_crop_crop_update(CropInterface $crop): void {
+  \Drupal::service(CropAssistHooks::class)->cropUpdate($crop);
+}
+
+/**
+ * Implements hook_ENTITY_TYPE_delete() for crop.
+ */
+#[LegacyHook]
+function media_assist_crop_crop_delete(CropInterface $crop): void {
+  \Drupal::service(CropAssistHooks::class)->cropDelete($crop);
+}

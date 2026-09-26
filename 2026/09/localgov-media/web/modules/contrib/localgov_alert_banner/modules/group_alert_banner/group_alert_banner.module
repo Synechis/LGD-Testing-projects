@@ -1,0 +1,94 @@
+<?php
+
+/**
+ * @file
+ * Various hook implementations.
+ */
+
+declare(strict_types=1);
+
+use Drupal\Core\Block\BlockPluginInterface;
+use Drupal\Core\Database\Query\AlterableInterface;
+use Drupal\Core\Form\FormStateInterface;
+use Drupal\Core\Hook\Attribute\LegacyHook;
+use Drupal\group_alert_banner\Hook\BlockHooks;
+use Drupal\group_alert_banner\Hook\EntityHooks;
+use Drupal\group_alert_banner\Hook\FormHooks;
+use Drupal\group_alert_banner\Hook\LocalgovMicrositesHooks;
+use Drupal\localgov_alert_banner\Entity\AlertBannerEntityTypeInterface;
+
+/**
+ * Implements hook_ENTITY_TYPE_insert().
+ *
+ * This is necessary during configuration imports.  This makes the plugin
+ * definitions from this module immediately available to other config files.
+ */
+#[LegacyHook]
+function group_alert_banner_localgov_alert_banner_type_insert(AlertBannerEntityTypeInterface $banner_type): void {
+
+  \Drupal::service(EntityHooks::class)->localgovAlertBannerTypeInsert($banner_type);
+}
+
+/**
+ * Implements hook_localgov_microsites_roles_default().
+ *
+ * Defines default site-wide and group-specific Alert banner permissions.
+ *
+ * @see Drupal\localgov_microsites_group\RolesHelper::getModuleRoles()
+ */
+#[LegacyHook]
+function group_alert_banner_localgov_microsites_roles_default(): array {
+  return \Drupal::service(LocalgovMicrositesHooks::class)->localgovMicrositesRolesDefault();
+}
+
+/**
+ * Implements hook_query_TAG_alter().
+ *
+ * On group pages, only list group banners belonging to the current group OR
+ * site-wide banners.
+ */
+#[LegacyHook]
+function group_alert_banner_query_entity_query_alter(AlterableInterface $query): void {
+  \Drupal::service(EntityHooks::class)->queryEntityQueryAlter($query);
+}
+
+/**
+ * Implements hook_block_build_alter().
+ *
+ * Alterations:
+ * - Adds the "route.group" context to alert blocks.  This lets us list
+ *   different alert banners in different groups.
+ */
+#[LegacyHook]
+function group_alert_banner_block_build_alter(array &$build, BlockPluginInterface $block_plugin): void {
+  \Drupal::service(BlockHooks::class)->blockBuildAlter($build, $block_plugin);
+}
+
+/**
+ * Implements hook_form_BASE_FORM_ID_alter() for hook_form_localgov_alert_banner_form_alter().
+ *
+ * Appends a custom form submit handler for the group banner add form.
+ */
+#[LegacyHook]
+function group_alert_banner_form_localgov_alert_banner_form_alter(&$form, FormStateInterface $form_state, $form_id): void {
+  \Drupal::service(FormHooks::class)->formLocalgovAlertBannerFormAlter($form, $form_state, $form_id);
+}
+
+/**
+ * Alert banner add form submit handler.
+ *
+ * Restores form redirect to original target.  This has earlier been overridden
+ * in group_relationship_entity_submit().
+ *
+ * @see AlertBannerEntityForm::save()
+ * @see group_relationship_entity_submit()
+ */
+function group_alert_banner_restore_publish_page_redirect($form, FormStateInterface $form_state): void {
+
+  if ($form_state->getValue('status-change') == TRUE) {
+    $banner = $form_state->getFormObject()->getEntity();
+    $group  = \Drupal::service('group.group_route_context')->getGroupFromRoute();
+
+    $form_state->setRedirect('entity.localgov_alert_banner.status_form', ['localgov_alert_banner' => $banner->id()], ['query' => ['destination' => "group/{$group->id()}/alert-banners"]]);
+  }
+}

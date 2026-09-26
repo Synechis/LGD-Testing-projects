@@ -1,0 +1,12 @@
+name: Telephone
+type: module
+description: 'Defines a field type for telephone numbers.'
+package: Field types
+core_version_requirement: ^11.3 || ^12
+dependencies:
+  - drupal:field
+
+# Information added by Drupal.org packaging script on 2026-08-13
+version: '1.0.1'
+project: 'telephone'
+datestamp: 1786639600

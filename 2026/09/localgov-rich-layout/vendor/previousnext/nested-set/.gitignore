@@ -1,0 +1,6 @@
+/bin/
+/vendor/
+/composer.lock
+*.sqlite
+.phpunit.result.cache
+.idea

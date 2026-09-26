@@ -1,0 +1,21 @@
+entity.localgov_service_contact.view:
+  title: 'View'
+  route_name: entity.localgov_service_contact.canonical
+  base_route: entity.localgov_service_contact.canonical
+entity.localgov_service_contact.edit_form:
+  title: 'Edit'
+  route_name: entity.localgov_service_contact.edit_form
+  base_route: entity.localgov_service_contact.canonical
+entity.localgov_service_contact.delete_form:
+  title: 'Delete'
+  route_name: entity.localgov_service_contact.delete_form
+  base_route: entity.localgov_service_contact.canonical
+  weight: 10
+entity.localgov_service_contact.collection:
+  title: 'Service contacts'
+  route_name: entity.localgov_service_contact.collection
+  base_route: system.admin_content
+  weight: 10
+localgov_workflows_notifications.local_tasks:
+  deriver: 'Drupal\localgov_workflows_notifications\Plugin\Derivative\LocalgovWorkflowsNotificationsLocalTasks'
+  weight: 11

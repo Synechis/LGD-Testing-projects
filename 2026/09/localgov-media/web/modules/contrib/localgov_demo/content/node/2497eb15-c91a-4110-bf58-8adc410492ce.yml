@@ -1,0 +1,163 @@
+_meta:
+  version: '1.0'
+  entity_type: node
+  uuid: 2497eb15-c91a-4110-bf58-8adc410492ce
+  bundle: localgov_publication_page
+  default_langcode: en
+  depends:
+    132505b8-a848-48ff-bd12-c74cdb09b5e8: user
+default:
+  revision_uid:
+    -
+      entity: 132505b8-a848-48ff-bd12-c74cdb09b5e8
+  status:
+    -
+      value: true
+  uid:
+    -
+      entity: 132505b8-a848-48ff-bd12-c74cdb09b5e8
+  title:
+    -
+      value: 'How to submit a petition'
+  created:
+    -
+      value: 1719918053
+  promote:
+    -
+      value: false
+  sticky:
+    -
+      value: false
+  revision_translation_affected:
+    -
+      value: true
+  moderation_state:
+    -
+      value: published
+  path:
+    -
+      alias: /publications/publications-cover-page-demo-content/petitions-scheme-publications-demo-content/how
+      langcode: en
+      pathauto: 1
+  localgov_publication_content:
+    -
+      entity:
+        _meta:
+          version: '1.0'
+          entity_type: paragraph
+          uuid: 4db4d22c-b155-4eb6-9986-9b1a387b42fc
+          bundle: localgov_text
+          default_langcode: en
+        default:
+          status:
+            -
+              value: true
+          created:
+            -
+              value: 1719917909
+          behavior_settings:
+            -
+              value:
+                layout_paragraphs:
+                  parent_uuid: null
+                  region: null
+          revision_translation_affected:
+            -
+              value: true
+          localgov_text:
+            -
+              value: '<p>5.1 Petitions may be submitted by e-mail, post, in person at the Town Hall, or through our e-petitions website. All petitions currently available for signature<br>will be shown on our website. We reserve the right to check the validity of the addresses of anyone who signs a petition to ensure that they have a real interest in the borough.</p><p>5.2 Organisers of petitions can visit our website to submit a petition online or download the petition form.&nbsp;</p><p>5.3 We welcome e-petitions which are created and submitted through our website. E-petitions must follow the same guidelines as paper petitions.</p><p>5.4 All petitions currently available for signature will be posted on the Council’s website. The website shows what is happening to a petition as it goes through<br>the various stages of the process set out in this scheme.</p><p>5.5 Elected Members may sign a petition but will need to follow the Council’s rules about declaring an<br>interest if they are involved in decision making in response to the petition.</p>'
+              format: wysiwyg
+    -
+      entity:
+        _meta:
+          version: '1.0'
+          entity_type: paragraph
+          uuid: 8aae8e8c-ec10-4b81-bebb-f5bc3f1fcbdf
+          bundle: localgov_accordion
+          default_langcode: en
+        default:
+          status:
+            -
+              value: true
+          created:
+            -
+              value: 1719919347
+          behavior_settings:
+            -
+              value:
+                layout_paragraphs:
+                  parent_uuid: null
+                  region: null
+          revision_translation_affected:
+            -
+              value: true
+          localgov_heading_level:
+            -
+              value: h2
+          localgov_paragraphs:
+            -
+              entity:
+                _meta:
+                  version: '1.0'
+                  entity_type: paragraph
+                  uuid: 20fff06f-050c-4db2-861b-ead709723f7c
+                  bundle: localgov_accordion_pane
+                  default_langcode: en
+                default:
+                  status:
+                    -
+                      value: true
+                  created:
+                    -
+                      value: 1719919347
+                  behavior_settings:
+                    -
+                      value: {  }
+                  localgov_body_text:
+                    -
+                      value: '<p>8.1 The response to a petition will depend on what the petition asks for and how many people have signed it, but may include one or more of the following:<br>• taking the action requested in the petition<br>• considering the petition at a Council meeting<br>• holding an inquiry into the matter<br>• undertaking research into the matter<br>• holding a public meeting<br>• holding consultation<br>• holding a meeting with petitioners</p>'
+                      format: wysiwyg
+                  localgov_heading_level:
+                    -
+                      value: h3
+                  localgov_title:
+                    -
+                      value: 'Council responses in an accordian'
+            -
+              entity:
+                _meta:
+                  version: '1.0'
+                  entity_type: paragraph
+                  uuid: 5e724945-60ed-4f0b-a7dc-5ad08add9ba7
+                  bundle: localgov_accordion_pane
+                  default_langcode: en
+                default:
+                  status:
+                    -
+                      value: true
+                  created:
+                    -
+                      value: 1719919347
+                  behavior_settings:
+                    -
+                      value: {  }
+                  localgov_body_text:
+                    -
+                      value: "<p>• referring the petition for consideration by one of the Council's Policy and Accountability Committees<br>• writing to the petition organiser setting out our views about the request in the petition<br>• resolve that the content of the petition be taken into account when reaching a decision on the relevant report.</p><p>Policy and Accountability Committees are committees of Councillors who are responsible for policy development and for scrutinising the work of the Council - in other words, they have the power to hold the Council's decision-makers to account.</p>"
+                      format: wysiwyg
+                  localgov_heading_level:
+                    -
+                      value: h3
+                  localgov_title:
+                    -
+                      value: 'Another set of things in an accordian'
+          localgov_title:
+            -
+              value: Accordion
+  localgov_published_date:
+    -
+      value: '2024-07-02'
+  localgov_updated_date:
+    -
+      value: '2024-07-02'

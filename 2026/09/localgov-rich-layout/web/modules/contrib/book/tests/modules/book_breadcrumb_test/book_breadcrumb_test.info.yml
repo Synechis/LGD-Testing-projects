@@ -1,0 +1,10 @@
+name: 'Book module breadcrumb tests'
+type: module
+description: 'Support module for book module breadcrumb testing.'
+package: Testing
+# version: VERSION
+
+# Information added by Drupal.org packaging script on 2024-04-04
+version: '1.0.0'
+project: 'book'
+datestamp: 1712238324

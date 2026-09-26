@@ -1,0 +1,12 @@
+media_assist_crop.preview:
+  path: '/media/{media}/crop-preview'
+  defaults:
+    _controller: '\Drupal\media_assist_crop\Controller\CropPreviewController::page'
+    _title_callback: '\Drupal\media_assist_crop\Controller\CropPreviewController::title'
+  requirements:
+    _permission: 'view media assist crop preview'
+    _entity_access: 'media.update'
+  options:
+    parameters:
+      media:
+        type: entity:media

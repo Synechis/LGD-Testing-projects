@@ -1,0 +1,37 @@
+<div class="media-assist-crop-summary" data-media-assist-crop-summary>
+  {% if arrival %}
+    <p class="media-assist-crop-summary__arrival" role="status" data-media-assist-crop-arrived-id="{{ arrival.id }}">
+      {{ 'Selected crop: @label'|t({'@label': arrival.label}) }}
+    </p>
+  {% endif %}
+
+  <p class="media-assist-crop-summary__count" role="status">
+    <strong>
+      <span data-media-assist-crop-set-count>{{ set_count }}</span>
+      {% trans %}of {{ total }} crops set{% endtrans %}
+    </strong>
+  </p>
+
+  <dl class="media-assist-crop-summary__lists">
+    <dt>{{ 'Set'|t }}</dt>
+    <dd>
+      <ul class="media-assist-crop-summary__list" data-media-assist-crop-list="set">
+        {% for item in set %}
+          <li data-media-assist-crop-item="{{ item.id }}"><button type="button" class="media-assist-crop-summary__go" data-media-assist-crop-goto="{{ item.id }}">{{ item.label }}</button></li>
+        {% endfor %}
+      </ul>
+      <p class="media-assist-crop-summary__empty" data-media-assist-crop-empty="set"{% if set %} hidden{% endif %}>{{ 'None'|t }}</p>
+    </dd>
+
+    <dt>{{ 'Not set'|t }}</dt>
+    <dd>
+      <ul class="media-assist-crop-summary__list" data-media-assist-crop-list="unset">
+        {% for item in unset %}
+          <li data-media-assist-crop-item="{{ item.id }}"><button type="button" class="media-assist-crop-summary__go" data-media-assist-crop-goto="{{ item.id }}">{{ item.label }}</button></li>
+        {% endfor %}
+      </ul>
+      <p class="media-assist-crop-summary__note" data-media-assist-crop-empty="unset-note"{% if not unset %} hidden{% endif %}>{{ 'Not set: centre cropped.'|t }}</p>
+      <p class="media-assist-crop-summary__empty" data-media-assist-crop-empty="unset"{% if unset %} hidden{% endif %}>{{ 'None'|t }}</p>
+    </dd>
+  </dl>
+</div>

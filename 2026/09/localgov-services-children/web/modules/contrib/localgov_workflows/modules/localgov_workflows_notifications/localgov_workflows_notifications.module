@@ -1,0 +1,211 @@
+<?php
+
+/**
+ * @file
+ * Primary module hooks for LocalGov Review Notifications module.
+ */
+
+use Drupal\Core\Entity\EntityInterface;
+use Drupal\Core\Entity\EntityTypeInterface;
+use Drupal\Core\Field\BaseFieldDefinition;
+use Drupal\Core\Field\FieldStorageDefinitionInterface;
+use Drupal\Core\Form\FormStateInterface;
+use Drupal\Core\Url;
+use Drupal\localgov_roles\RolesHelper;
+use Drupal\views\ViewExecutable;
+use Drupal\views\Views;
+
+/**
+ * Implements hook_entity_base_field_info().
+ */
+function localgov_workflows_notifications_entity_base_field_info(EntityTypeInterface $entity_type) {
+  $fields = [];
+
+  // Add service contacts field to nodes.
+  if ($entity_type->id() === 'node') {
+    $fields['localgov_service_contacts'] = BaseFieldDefinition::create('entity_reference')
+      ->setLabel('Service contacts')
+      ->setSetting('target_type', 'localgov_service_contact')
+      ->setSetting('handler', 'service_contact_reference')
+      ->setCardinality(FieldStorageDefinitionInterface::CARDINALITY_UNLIMITED)
+      ->setDisplayOptions('form', [
+        'type' => 'entity_reference_autocomplete',
+        'settings' => [
+          'match_operator' => 'CONTAINS',
+          'size' => 60,
+          'autocomplete_type' => 'tags',
+          'placeholder' => '',
+        ],
+      ])
+      ->setDisplayConfigurable('form', TRUE);
+  }
+
+  return $fields;
+}
+
+/**
+ * Implements hook_form_alter().
+ */
+function localgov_workflows_notifications_form_alter(&$form, FormStateInterface $form_state, $form_id) {
+
+  if (!isset($form['localgov_service_contacts'])) {
+    return;
+  }
+
+  // Hide service contacts widget if user doesn't have permission.
+  if (!\Drupal::currentUser()->hasPermission('view localgov_service_contact')) {
+    $form['localgov_service_contacts']['#access'] = FALSE;
+    return;
+  }
+
+  // Add service contacts field advanced group on node edit forms.
+  if (isset($form['advanced'])) {
+    $form['service_contacts'] = [
+      '#type' => 'details',
+      '#title' => t('Service contacts'),
+      '#description' => t('Associate service contacts with this content by searching by name or email.'),
+      '#group' => 'advanced',
+      '#open' => TRUE,
+      '#weight' => -4,
+    ];
+    $form['localgov_service_contacts']['#group'] = 'service_contacts';
+
+    // Remove field weight.
+    foreach ($form['localgov_service_contacts']['widget'] as $i => $item) {
+      if (is_array($item) && isset($item['_weight'])) {
+        unset($form['localgov_service_contacts']['widget'][$i]['_weight']);
+      }
+    }
+  }
+
+  // Add our custom validation handler.
+  $form['#validate'][] = 'localgov_workflows_notifications_node_form_validate';
+}
+
+/**
+ * Custom validation handler for node forms.
+ */
+function localgov_workflows_notifications_node_form_validate($form, &$form_state) {
+
+  // Ensure the service contacts field is unique.
+  $localgov_service_contacts = $form_state->getValue('localgov_service_contacts');
+  $values = [];
+  foreach ($localgov_service_contacts as $value) {
+    if (is_array($value) && !empty($value['target_id'])) {
+      if (in_array((string) $value['target_id'], $values, TRUE)) {
+        $form_state->setError($form['localgov_service_contacts'], t('Service contacts must be unique.'));
+        return;
+      }
+      $values[] = (string) $value['target_id'];
+    }
+  }
+}
+
+/**
+ * Implements hook_preprocess_HOOK() for field_multiple_value_form.
+ */
+function localgov_workflows_notifications_preprocess_field_multiple_value_form(&$variables) {
+
+  // Remove title and ordering from service contacts field.
+  if ($variables['element']['#field_name'] === 'localgov_service_contacts') {
+    if (isset($variables['table']['#header'])) {
+      $variables['table']['#header'] = [];
+    }
+    if (isset($variables['table']['#tabledrag'])) {
+      unset($variables['table']['#tabledrag']);
+    }
+  }
+}
+
+/**
+ * Implements hook_cron().
+ */
+function localgov_workflows_notifications_cron(): void {
+
+  // Don't proceed if email notifications are disabled.
+  $settings = \Drupal::config('localgov_workflows_notifications.settings');
+  if (!$settings->get('email_enabled')) {
+    return;
+  }
+
+  // Don't proceed if localgov_review_date module is not enabled.
+  if (!\Drupal::moduleHandler()->moduleExists('localgov_review_date')) {
+    return;
+  }
+
+  // Enqueue email notification for content past its needs review date.
+  $notification_timer = \Drupal::service('localgov_workflows_notifications.notification_timer');
+  if ($notification_timer->trigger()) {
+
+    // Get review date IDs that need have passed their review date.
+    $request_time = \Drupal::time()->getRequestTime();
+    $last_run = $notification_timer->getLastRun();
+    $storage = \Drupal::entityTypeManager()->getStorage('review_date');
+    $review_date_ids = $storage->getQuery()
+      ->condition('active', 1)
+      ->condition('review', $last_run, '>')
+      ->condition('review', $request_time, '<=')
+      ->accessCheck(FALSE)
+      ->execute();
+
+    if (!empty($review_date_ids)) {
+
+      // Create email notifications.
+      $notifier = \Drupal::service('localgov_workflows_notifications.notifier');
+      foreach ($review_date_ids as $id) {
+        $review_date = $storage->load($id);
+        if ($entity = $review_date->getEntity()) {
+          $notifier->enqueue($entity, 'needs_review');
+        }
+      }
+    }
+
+    $notification_timer->update();
+  }
+}
+
+/**
+ * Implements hook_localgov_roles_default().
+ */
+function localgov_workflows_notifications_localgov_roles_default(): array {
+
+  // Service contact permissions.
+  return [
+    RolesHelper::EDITOR_ROLE => [
+      'administer localgov_service_contact',
+      'create localgov_service_contact',
+      'delete localgov_service_contact',
+      'edit localgov_service_contact',
+      'view localgov_service_contact',
+    ],
+    RolesHelper::AUTHOR_ROLE => [
+      'view localgov_service_contact',
+    ],
+    RolesHelper::CONTRIBUTOR_ROLE => [
+      'view localgov_service_contact',
+    ],
+  ];
+}
+
+/**
+ * Implements hook_entity_operation_alter().
+ */
+function localgov_workflows_notifications_entity_operation_alter(array &$operations, EntityInterface $entity) {
+  // Add "View content" operation link for every service contact listed.
+  // First make sure that the "Content by owner" View is enabled.
+  $view = Views::getView('localgov_content_by_owner');
+  if ($view instanceof ViewExecutable) {
+    // Only add the operation link to the Service contact entity collection.
+    if ($entity->bundle() === 'localgov_service_contact') {
+      $operations['service_contact_view_content'] = [
+        'title' => t('View content'),
+        // Point to a filtered version of the "Content by owner" View,
+        // using the View's contextual filter.
+        'url' => Url::fromRoute('view.localgov_content_by_owner.page_1', [
+          ['service-contact-id' => $entity->id()],
+        ]),
+        'weight' => 150,
+      ];
+    }
+  }
+}

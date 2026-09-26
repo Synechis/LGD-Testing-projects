@@ -1,0 +1,16 @@
+entity.localgov_service_contact.collection:
+  title: 'Service contacts'
+  description: 'List of service contacts.'
+  route_name: entity.localgov_service_contact.collection
+  parent: system.admin_content
+
+localgov_workflows_notifications.settings:
+  title: 'LocalGov workflow notifications'
+  description: 'Administer LocalGov workflow notifications'
+  parent: system.admin_config_workflow
+  route_name: localgov_workflows_notifications.settings
+  weight: 10
+
+localgov_workflows_notifications.content_by_owner:
+  deriver: 'Drupal\localgov_workflows_notifications\Plugin\Derivative\LocalgovWorkflowsNotificationsContentByOwner'
+  weight: 11

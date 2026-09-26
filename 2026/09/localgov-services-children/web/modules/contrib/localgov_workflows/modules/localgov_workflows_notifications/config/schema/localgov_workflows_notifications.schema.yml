@@ -1,0 +1,11 @@
+# Schema for the configuration files of the LocalGov Workflows Notifications module.
+localgov_workflows_notifications.settings:
+  type: config_object
+  label: 'LocalGov Workflows Notifications settings'
+  mapping:
+    email_enabled:
+      type: boolean
+      label: 'Enable email notifications'
+    email_frequency:
+      type: float
+      label: 'Email frequency in days'

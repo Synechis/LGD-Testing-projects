@@ -1,0 +1,47 @@
+{
+    "name": "drupal/localgov_publications",
+    "description": "HTML publications for the LocalGovDrupal distribution.",
+    "type": "drupal-module",
+    "homepage": "https://www.drupal.org/project/localgov_publications",
+    "license": "GPL-2.0-or-later",
+    "minimum-stability": "dev",
+    "repositories": [
+        {
+            "type": "composer",
+            "url": "https://packages.drupal.org/8"
+        }
+    ],
+    "require": {
+        "drupal/book": "^1.0.0",
+        "drupal/localgov_core": "^2.11 || ^3.0",
+        "drupal/localgov_paragraphs": "^2.4",
+        "drupal/pathauto": "^1.0.0"
+    },
+    "require-dev": {
+        "drupal/coder": "*",
+        "drupal/localgov_base": "^2.3",
+        "drupal/preview_link": "^2.1@alpha",
+        "phpstan/phpstan": "^1.0",
+        "phpstan/phpstan-deprecation-rules": "^1.0",
+        "phpstan/phpstan-strict-rules": "^1.5",
+        "phpstan/extension-installer": "^1.4"
+    },
+    "extra": {
+        "installer-paths": {
+            "web/libraries/{$name}": ["type:drupal-library"]
+        }
+    },
+    "scripts": {
+        "phpcs": "phpcs",
+        "test": [
+            "@phpcs"
+        ]
+    },
+    "config": {
+        "allow-plugins": {
+            "dealerdirect/phpcodesniffer-composer-installer": true,
+            "cweagans/composer-patches": true,
+            "phpstan/extension-installer": true
+        }
+    }
+}

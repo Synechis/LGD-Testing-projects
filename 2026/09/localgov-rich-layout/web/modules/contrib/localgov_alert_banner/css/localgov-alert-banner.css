@@ -1,0 +1,96 @@
+/**
+ * @file
+ * Style rules for alert banners
+ */
+
+/* Default */
+.localgov-alert-banner {
+  background-color: #00856a;
+}
+
+.localgov-alert-banner,
+.localgov-alert-banner a {
+  color: #fefefe;
+}
+
+/* Reset the title colour as some themes assign a colour to h2.
+   Also reset the body text colour as Olivero assigns a colour 
+   to .text-content. */
+.localgov-alert-banner .localgov-alert-banner__title,
+.localgov-alert-banner .text-content {
+  color: inherit;
+}
+
+.localgov-alert-banner__close {
+  padding: 0.5rem 0.9375rem;
+  text-align: center;
+  color: #fff;
+  border: 1px solid #fff;
+  border-radius: 0;
+  background-color: transparent;
+  font-weight: 700;
+  line-height: 1.5;
+}
+
+.localgov-alert-banner--minor .localgov-alert-banner__close {
+  color: #0b0c0c;
+  border-color: #0b0c0c;
+}
+
+.localgov-alert-banner__close:focus,
+.localgov-alert-banner__close:hover {
+  cursor: pointer;
+  text-decoration: underline;
+  color: #0b0c0c;
+  border-color: #fff;
+  background-color: #fff;
+}
+
+.localgov-alert-banner--minor .localgov-alert-banner__close:focus,
+.localgov-alert-banner--minor .localgov-alert-banner__close:hover {
+  color: #fff;
+  border-color: #0b0c0c;
+  background-color: #0b0c0c;
+}
+
+/* Announcement */
+.localgov-alert-banner--announcement {
+  background-color: #00856a;
+}
+
+/* Minor */
+.localgov-alert-banner--minor {
+  color: #121212;
+  background-color: #fc3;
+}
+.localgov-alert-banner--minor a {
+  color: #121212;
+}
+
+/* Major */
+.localgov-alert-banner--major {
+  background-color: #c00010;
+}
+
+/* Death of a notable person */
+.localgov-alert-banner--notable-person {
+  background-color: #000;
+}
+
+.localgov-alert-banner__wrapper {
+  max-width: 73.125rem;
+  margin: 0 auto;
+}
+
+.localgov-alert-banner__inner {
+  display: flex;
+  justify-content: space-between;
+  margin: 0 0.9375rem;
+  padding: 0.625rem 0;
+}
+
+.localgov-alert-banner__actions {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+}

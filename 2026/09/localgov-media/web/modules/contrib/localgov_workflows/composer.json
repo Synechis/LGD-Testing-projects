@@ -1,0 +1,32 @@
+{
+    "name": "drupal/localgov_workflows",
+    "description": "Default editorial workflow for LocalGov Drupal content.",
+    "type": "drupal-module",
+    "homepage": "https://www.drupal.org/project/localgov_workflows",
+    "license": "GPL-2.0-or-later",
+    "minimum-stability": "dev",
+    "require": {
+        "cweagans/composer-patches": "^1.6",
+        "drupal/core": "^10.2 || ^11.0",
+        "drupal/diff": "^2.0",
+        "drupal/responsive_preview": "^2.0",
+        "drupal/scheduled_transitions": "^2.1",
+        "drupal/symfony_mailer": "^1.4",
+        "drupal/localgov_core": "^2.12 || ^3.0"
+    },
+    "require-dev": {
+        "drupal/localgov_services": "^2.0"
+    },
+    "extra": {
+        "enable-patching": true,
+        "composer-exit-on-patch-failure": true,
+        "patchLevel": {
+            "drupal/core": "-p2"
+        },
+        "patches": {
+            "drupal/core": {
+                "Fix warning for deprecated function: mb_strtolower(): Passing null to parameter #1 ($string) of type string is deprecated https://www.drupal.org/project/drupal/issues/3301613" : "https://www.drupal.org/files/issues/2025-10-17/3301613-10.diff"
+            }
+        }
+    }
+}

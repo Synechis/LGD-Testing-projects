@@ -1,0 +1,20 @@
+.gin--edit-form .entity-browser-modal.ui-widget-content .ui-dialog-buttonpane {
+  padding-top: 64px;
+}
+
+.gin--edit-form .entity-browser-modal.ui-widget-content .ui-dialog-buttonpane .form-actions {
+  justify-content: flex-end;
+}
+
+.gin--edit-form .entity-browser-modal.ui-widget-content .ui-dialog-content .paragraphs-library-item-form .entity-content-form-footer .field--name-moderation-state .container-inline {
+  margin: 0;
+}
+
+.gin--edit-form .entity-browser-modal.ui-widget-content .ui-dialog-content .paragraphs-library-item-form .entity-content-form-footer .field--name-moderation-state .container-inline .js-form-type-item {
+  margin-bottom: 12px;
+}
+
+.gin--edit-form .entity-browser-modal.ui-widget-content .ui-dialog-content .paragraphs-library-item-form .entity-content-form-footer {
+  position: absolute;
+  bottom: 14px;
+}

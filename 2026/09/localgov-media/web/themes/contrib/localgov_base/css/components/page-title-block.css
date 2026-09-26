@@ -1,0 +1,22 @@
+/*
+  @file Theming for the page title and lede block.
+*/
+
+.lgd-page-title-block {
+  margin-block-end: var(--vertical-rhythm-spacing);
+  border-block-end: var(--page-title-border);
+}
+
+.lgd-page-title-block__title,
+.lgd-page-title-block__subheader {
+  max-width: var(--page-title-width);
+}
+
+.lgd-page-title-block__subtitle {
+  font-size: var(--page-title-subtitle-font-size);
+}
+
+.lgd-page-title-block__subtitle,
+.lgd-page-title-block__subheader {
+  font-size: var(--page-title-lede-font-size);
+}

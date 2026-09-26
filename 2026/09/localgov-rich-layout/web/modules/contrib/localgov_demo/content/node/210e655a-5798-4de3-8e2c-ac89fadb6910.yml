@@ -1,0 +1,154 @@
+_meta:
+  version: '1.0'
+  entity_type: node
+  uuid: 210e655a-5798-4de3-8e2c-ac89fadb6910
+  bundle: localgov_publication_page
+  default_langcode: en
+  depends:
+    132505b8-a848-48ff-bd12-c74cdb09b5e8: user
+    3e428925-c55a-4da9-905b-684865840764: media
+    8201bccb-327d-41f7-a135-1e0064dba73f: node
+default:
+  revision_uid:
+    -
+      entity: 132505b8-a848-48ff-bd12-c74cdb09b5e8
+  status:
+    -
+      value: true
+  uid:
+    -
+      entity: 132505b8-a848-48ff-bd12-c74cdb09b5e8
+  title:
+    -
+      value: 'What is excluded from the petition scheme?'
+  created:
+    -
+      value: 1719918431
+  promote:
+    -
+      value: false
+  sticky:
+    -
+      value: false
+  revision_translation_affected:
+    -
+      value: true
+  moderation_state:
+    -
+      value: published
+  path:
+    -
+      alias: /publications/publications-cover-page-demo-content/petitions-scheme-publications-demo-content/what
+      langcode: en
+      pathauto: 1
+  localgov_publication_content:
+    -
+      entity:
+        _meta:
+          version: '1.0'
+          entity_type: paragraph
+          uuid: 16b7d72c-cd3b-44db-8517-618c5c602961
+          bundle: localgov_text
+          default_langcode: en
+        default:
+          status:
+            -
+              value: true
+          created:
+            -
+              value: 1719918394
+          behavior_settings:
+            -
+              value:
+                layout_paragraphs:
+                  parent_uuid: null
+                  region: null
+          revision_translation_affected:
+            -
+              value: true
+          localgov_text:
+            -
+              value: '<p>6.1 The following petitions will be excluded from the scheme:-</p><ul><li>Where a petition is considered to be vexatious, abusive or otherwise inappropriate.</li><li>The petition applies to a planning or licensing application, where there are already procedures to make representations.</li><li>The petition is a statutory petition (for example requesting a referendum on having an elected Mayor).</li><li>The petition concerns a matter where there is already an existing right of appeal, such as Council Tax banding and non-domestic rates, where other<br>procedures apply.</li><li>The petition concerns a matter which the Council has no ability to influence (see section 11 below)</li></ul><p>&nbsp;</p>'
+              format: wysiwyg
+    -
+      entity:
+        _meta:
+          version: '1.0'
+          entity_type: paragraph
+          uuid: b41a4ff9-0356-4903-8d69-93745c139b9b
+          bundle: localgov_call_out_box
+          default_langcode: en
+        default:
+          status:
+            -
+              value: true
+          created:
+            -
+              value: 1719919664
+          behavior_settings:
+            -
+              value:
+                layout_paragraphs:
+                  parent_uuid: null
+                  region: null
+          revision_translation_affected:
+            -
+              value: true
+          localgov_background_image:
+            -
+              entity: 3e428925-c55a-4da9-905b-684865840764
+          localgov_body_text:
+            -
+              value: '<p>You can add pretty much any existing content block into publications.</p>'
+              format: wysiwyg
+          localgov_button:
+            -
+              target_uuid: 8201bccb-327d-41f7-a135-1e0064dba73f
+              title: 'Publications cover page demo content'
+              options: {  }
+          localgov_colour_theme:
+            -
+              value: default
+          localgov_header_text:
+            -
+              value: 'Call out box'
+          localgov_heading_level:
+            -
+              value: h2
+          localgov_opens_in_a_new_window:
+            -
+              value: true
+    -
+      entity:
+        _meta:
+          version: '1.0'
+          entity_type: paragraph
+          uuid: c36a79f1-615a-40d7-acb3-99a92eb43a03
+          bundle: localgov_text
+          default_langcode: en
+        default:
+          status:
+            -
+              value: true
+          created:
+            -
+              value: 1719919737
+          behavior_settings:
+            -
+              value:
+                layout_paragraphs:
+                  parent_uuid: null
+                  region: null
+          revision_translation_affected:
+            -
+              value: true
+          localgov_text:
+            -
+              value: '<h2>&nbsp;</h2><h2>What will the council do when it receives a petition (H2)</h2><p>7.1 The Petitions Officer will send a valid petition to a Responding Officer in the relevant Council department.&nbsp;</p><p>The Responding Officer will be responsible for investigating the issue and advising on the action to be taken by the Council.&nbsp;</p><p>An acknowledgement of receipt will be sent to the person organising the petition within 10 working days of the petition having been made.&nbsp;</p><p>Where the petition has been submitted via the E-petitions facility, the acknowledgment will also be sent to everyone who provides a valid e-mail address.&nbsp;</p><p>The acknowledgement will say what we have done or intend to do in response to the petition. It will also be published on our website, except in cases where this would be inappropriate. The petition will be copied to the relevant Ward Councillor(s).&nbsp;</p><p>7.2 We want to ensure that petitions are clearly and effectively worded. We will therefore offer help to petition organisers to enable them to make their petitions as focused as possible, in the interests of getting a response from the Council which addresses petitioners’ concerns. If we feel there are other ways of getting a quicker and more satisfactory response to the subject of the petition, we will suggest them.&nbsp;</p><p>We may therefore contact the petition organiser about these issues before the acknowledgment is sent or afterwards.&nbsp;</p><p>7.3 If the Council can do what the petition asks for, the acknowledgement may confirm that the requested action has been taken (or will be taken by a<br>specified date) and the petition organiser will be asked to agree to the closure of the petition, either immediately or after the specified date.</p>'
+              format: wysiwyg
+  localgov_published_date:
+    -
+      value: '2024-07-02'
+  localgov_updated_date:
+    -
+      value: '2024-07-02'

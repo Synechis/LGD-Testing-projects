@@ -1,0 +1,34 @@
+{#
+/**
+ * @file
+ * Theme override for a breadcrumb trail.
+ *
+ * Available variables:
+ * - breadcrumb: Breadcrumb trail items.
+ * - breadcrumb_token: Used to insert a token to be replaced by a reverse CMS (EG Civica Modern.Gov)
+ */
+#}
+
+{% if not localgov_base_remove_css %}
+  {{ attach_library('localgov_base/breadcrumbs') }}
+{% endif %}
+
+{% if breadcrumb %}
+  <nav class="breadcrumbs" aria-labelledby="system-breadcrumbs">
+    <h2 id="system-breadcrumbs" class="visually-hidden">{{ 'Breadcrumbs'|t }}</h2>
+    <ol class="breadcrumbs__list">
+      {% for item in breadcrumb %}
+        <li class="breadcrumbs__item">
+          {% if item.url %}
+            <a class="breadcrumbs__link" href="{{ item.url }}">{{ item.text }}</a>
+            {% else %}
+              {{ item.text }}
+          {% endif %}
+        </li>
+      {% endfor %}
+      {% if breadcrumb_token is defined %}
+        {{ breadcrumb_token }}
+      {% endif %}
+    </ol>
+  </nav>
+{% endif %}

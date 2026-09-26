@@ -1,0 +1,41 @@
+<div class="media-assist-crop-preview-wrapper">
+  <h2 class="media-assist-crop-preview__summary">
+    {% trans %}{{ set_count }} of {{ total }} crops set{% endtrans %}
+  </h2>
+  <p class="media-assist-crop-preview__note">
+    {{ 'Unset crops are shown centre cropped.'|t }}
+  </p>
+
+  {% if tiles is empty %}
+    <p>{{ 'No image styles use a crop type.'|t }}</p>
+  {% else %}
+    <ul class="media-assist-crop-preview">
+      {% for tile in tiles %}
+        <li class="media-assist-crop-preview__item{{ tile.set ? ' is-set' : ' is-unset' }}">
+          <figure class="media-assist-crop-preview__figure">
+            <img
+              src="{{ tile.url }}"
+              {% if tile.width %}width="{{ tile.width }}"{% endif %}
+              {% if tile.height %}height="{{ tile.height }}"{% endif %}
+              alt="{{ 'Preview of the @label crop'|t({'@label': tile.label}) }}"
+              loading="lazy">
+            <figcaption class="media-assist-crop-preview__caption">
+              <span class="media-assist-crop-preview__label">{{ tile.label }}</span>
+              <span class="media-assist-crop-preview__state">
+                {% if tile.set %}
+                  {{ 'Crop set'|t }}
+                {% else %}
+                  {{ 'Not set, centre crop'|t }}
+                {% endif %}
+              </span>
+              <span class="media-assist-crop-preview__style">{{ tile.style }}</span>
+            </figcaption>
+          </figure>
+          <a class="media-assist-crop-preview__edit" href="{{ tile.edit_url }}">
+            {{ 'Edit'|t }}<span class="visually-hidden"> {{ 'the @label crop'|t({'@label': tile.label}) }}</span>
+          </a>
+        </li>
+      {% endfor %}
+    </ul>
+  {% endif %}
+</div>

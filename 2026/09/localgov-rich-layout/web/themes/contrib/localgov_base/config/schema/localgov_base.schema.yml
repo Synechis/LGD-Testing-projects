@@ -1,0 +1,61 @@
+localgov_base.settings:
+  type: config_object
+  label: 'LocalGov Base settings'
+  mapping:
+    localgov_base_remove_css:
+      type: boolean
+      label: 'Remove CSS libraries from base theme.'
+    localgov_base_remove_js:
+      type: boolean
+      label: 'Remove JS libraries from base theme.'
+    localgov_base_add_unpublished_background_colour:
+      type: boolean
+      label: 'Add background colour to unpublished content.'
+    localgov_base_add_draft_note_to_unpublished_content:
+      type: boolean
+      label: 'Add "[Draft]" to title of unpublished content.'
+    localgov_base_add_archived_note_to_archived_content:
+      type: boolean
+      label: 'Add "[Archived]" to title of archived content.'
+    localgov_base_header_behaviour:
+      type: string
+      label: 'Header behaviour'
+      description: 'Choose whether the header should be sticky or not.'
+      constraints:
+        Regex: '^(default|sticky|appears_on_scroll)$'
+    localgov_base_service_landing_page_child_pages_list_style:
+      type: string
+      label: 'Service Landing Page: Child pages list style'
+      description: 'Choose how child pages are displayed on service landing pages.'
+      default_value: 'grid_3'
+      constraints:
+        Regex: '^(grid_4|grid_3|grid_2|single_column)$'
+    localgov_base_service_sub_landing_page_child_pages_list_style:
+      type: string
+      label: 'Service Sub-landing Page: Child pages list style'
+      description: 'Choose how child pages are displayed on service sub-landing pages.'
+      default_value: 'grid_2'
+      constraints:
+        Regex: '^(grid_4|grid_3|grid_2|single_column)$'
+    localgov_base_localgov_guides_stacked_heading:
+      type: boolean
+      label: 'Stacked heading'
+      description: 'Choose whether the heading should be stacked or not.'
+    localgov_base_localgov_guides_vertical_navigation:
+      type: boolean
+      label: 'Vertical navigation'
+      description: 'Choose whether the navigation should be vertical or not.'
+    localgov_base_mobile_breakpoint_js:
+      type: string
+      label: 'Mobile breakpoint for JS'
+      description: 'The mobile breakpoint for JS. This is used to determine when to apply mobile styles.'
+      default_value: '768'
+    localgov_base_responsive_wysiwyg_tables:
+      type: boolean
+      label: 'Responsive WYSIWYG tables'
+      description: 'Choose whether to make WYSIWYG tables responsive or not.'
+      default_value: TRUE
+    localgov_base_equal_heights_classes:
+      type: string
+      label: 'Classes to equalise heights of blocks'
+      description: 'A list of classes to equalise heights of blocks. For example: .ia-block, .link-block, .newsroom-teaser.'

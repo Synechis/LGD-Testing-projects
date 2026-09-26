@@ -1,0 +1,14 @@
+.localgov-alert-banner {
+  max-width: var(--width-large);
+  margin: var(--grid-column-spacing) auto;
+  border: var(--border-large);
+  border-color: var(--color-black);
+}
+
+.localgov-alert-banner > .padding-horizontal {
+  padding: 0;
+}
+
+.localgov-alert-banner__inner {
+  padding: var(--grid-column-spacing);
+}

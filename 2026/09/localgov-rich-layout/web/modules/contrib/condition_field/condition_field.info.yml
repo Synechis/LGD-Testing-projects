@@ -1,0 +1,12 @@
+name: 'Condition Field'
+type: module
+description: 'Defines a field type for Condition Plugins'
+core_version_requirement: ^10.3 || ^11 || ^12
+package: 'Field types'
+dependencies:
+  - drupal:field
+
+# Information added by Drupal.org packaging script on 2026-06-17
+version: '2.1.0'
+project: 'condition_field'
+datestamp: 1781711623

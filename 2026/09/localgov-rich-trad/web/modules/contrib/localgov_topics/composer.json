@@ -1,0 +1,8 @@
+{
+    "name": "drupal/localgov_topics",
+    "description": "Topic taxonomy and related functionality for the LocalGovDrupal distribution.",
+    "type": "drupal-module",
+    "homepage": "https://www.drupal.org/project/localgov_topics",
+    "license": "GPL-2.0-or-later",
+    "minimum-stability": "dev"
+}

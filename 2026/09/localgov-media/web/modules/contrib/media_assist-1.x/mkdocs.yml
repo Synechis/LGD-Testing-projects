@@ -1,0 +1,12 @@
+site_name: Media Assist
+docs_dir: docs
+site_dir: public
+theme:
+  name: mkdocs
+nav:
+  - Overview: index.md
+  - Installing: installing.md
+  - Labels, summary and crop preview: crop.md
+  - Shape and size in CKEditor: embed.md
+  - How image styles are read: image-style-reader.md
+  - Developing: developing.md

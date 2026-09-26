@@ -1,0 +1,22 @@
+{#
+/**
+ * @file
+ * Default node template for localgov_subsites_page pages.
+ */
+#}
+{%
+  set classes = [
+    'node',
+    'node--type-' ~ node.bundle|clean_class,
+    node.isPromoted() ? 'node--promoted',
+    node.isSticky() ? 'node--sticky',
+    not node.isPublished() ? 'node--unpublished',
+    view_mode ? 'node--view-mode-' ~ view_mode|clean_class,
+  ]
+%}
+<article{{ attributes.addClass(classes) }}>
+  <div class="lgd-container padding-horizontal">
+    <h2>{{ node.label }}</h2>
+  </div>
+  {{ content }}
+</article>

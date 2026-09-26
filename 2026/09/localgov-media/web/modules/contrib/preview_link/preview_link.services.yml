@@ -1,0 +1,89 @@
+services:
+  _defaults:
+    autowire: true
+    autoconfigure: true
+
+  access_check.preview_link.canonical_rerouter:
+    class: Drupal\preview_link\Access\PreviewLinkCanonicalRerouteAccessCheck
+    arguments: ['@tempstore.private', '@preview_link.host', '@current_route_match']
+    tags:
+      - { name: access_check, applies_to: _access_preview_link_canonical_rerouter }
+
+  access_check.preview_link:
+    class: Drupal\preview_link\Access\PreviewLinkAccessCheck
+    arguments: ['@preview_link.host']
+    tags:
+      - { name: access_check, applies_to: _access_preview_link }
+  Drupal\preview_link\Access\PreviewLinkAccessCheck: '@access_check.preview_link'
+
+  preview_link.entity_type_bundle_checker:
+    class: Drupal\preview_link\EntityTypeBundleChecker
+  Drupal\preview_link\EntityTypeBundleChecker: '@preview_link.entity_type_bundle_checker'
+
+  access_check.preview_enabled:
+    class: Drupal\preview_link\Access\PreviewEnabledAccessCheck
+    arguments: ['@preview_link.entity_type_bundle_checker']
+    tags:
+      - { name: access_check, applies_to: _access_preview_enabled }
+  Drupal\preview_link\Access\PreviewEnabledAccessCheck: '@access_check.preview_enabled'
+
+  access_check.preview_link.session_exists:
+    class: Drupal\preview_link\Access\PreviewLinkSessionExistsAccessCheck
+    arguments: ['@session_configuration']
+    tags:
+      - { name: access_check, applies_to: _access_preview_session_exists }
+
+  cache_context.preview_link_route:
+    class: Drupal\preview_link\PreviewLinkCacheContext
+    arguments: ['@current_route_match']
+    tags:
+      - { name: cache.context }
+
+  preview_link.link_expiry:
+    class: Drupal\preview_link\PreviewLinkExpiry
+    arguments: ['@config.factory']
+
+  preview_link.host:
+    class: Drupal\preview_link\PreviewLinkHost
+  Drupal\preview_link\PreviewLinkHostInterface: '@preview_link.host'
+
+  preview_link.message:
+    class: Drupal\preview_link\PreviewLinkMessage
+    arguments: ['@string_translation', '@current_user']
+
+  preview_link.hook_helper:
+    class: Drupal\preview_link\PreviewLinkHookHelper
+  Drupal\preview_link\PreviewLinkHookHelper: '@preview_link.hook_helper'
+
+  preview_link.preview_link_rerouter:
+    class: Drupal\preview_link\EventSubscriber\PreviewLinkRouteEventSubscriber
+    arguments:
+      - '@messenger'
+      - '@preview_link.message'
+      - '@config.factory'
+      - '@logger.channel.preview_link'
+    tags:
+      - { name: event_subscriber }
+
+  preview_link.route_subscriber:
+    class: Drupal\preview_link\Routing\PreviewLinkRoutes
+    arguments: ['@entity_type.manager']
+    tags:
+      - { name: event_subscriber }
+
+  logger.channel.preview_link:
+    parent: logger.channel_base
+    arguments: [ 'preview_link' ]
+
+  Drupal\preview_link\Hook\PreviewLinkHooks:
+    class: Drupal\preview_link\Hook\PreviewLinkHooks
+
+  Drupal\preview_link\Hook\PreviewLinkDeleteHooks:
+    class: Drupal\preview_link\Hook\PreviewLinkDeleteHooks
+
+  Drupal\preview_link\Hook\PreviewLinkEntityHooks:
+    class: Drupal\preview_link\Hook\PreviewLinkEntityHooks
+
+  plugin.manager.preview_link_autopopulate:
+    class: Drupal\preview_link\PreviewLinkAutopopulatePluginManager
+    parent: default_plugin_manager

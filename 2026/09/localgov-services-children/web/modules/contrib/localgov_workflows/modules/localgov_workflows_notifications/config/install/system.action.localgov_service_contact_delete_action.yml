@@ -1,0 +1,10 @@
+langcode: en
+status: true
+dependencies:
+  module:
+    - localgov_workflows_notifications
+id: localgov_service_contact_delete_action
+label: 'Delete service contacts'
+type: localgov_service_contact
+plugin: entity:delete_action:localgov_service_contact
+configuration: {  }

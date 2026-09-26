@@ -1,0 +1,19 @@
+<?php
+
+/**
+ * @file
+ * Hooks for Preview Link Test.
+ */
+
+declare(strict_types=1);
+
+use Drupal\Core\Hook\Attribute\LegacyHook;
+use Drupal\preview_link_test\Hook\PreviewLinkTestHooks;
+
+/**
+ * Implements hook_entity_type_alter().
+ */
+#[LegacyHook]
+function preview_link_test_entity_type_alter(array &$entity_types): void {
+  \Drupal::service(PreviewLinkTestHooks::class)->entityTypeAlter($entity_types);
+}

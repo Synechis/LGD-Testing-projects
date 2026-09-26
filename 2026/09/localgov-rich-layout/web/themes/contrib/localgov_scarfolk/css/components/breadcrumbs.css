@@ -1,0 +1,7 @@
+/*
+  If there's less than 2 items in the breadcrumbs, hide the breadcrumbs region.
+  This is because the first item is always the homepage.
+*/
+.region-breadcrumb:not(:has(.breadcrumbs__item:nth-child(2))) {
+  display: none;
+}

@@ -1,0 +1,5 @@
+localgov_service_contact.add_form:
+  title: 'Add service contact'
+  route_name: entity.localgov_service_contact.add_form
+  appears_on:
+    - entity.localgov_service_contact.collection

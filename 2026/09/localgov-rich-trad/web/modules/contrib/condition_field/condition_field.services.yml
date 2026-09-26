@@ -1,0 +1,5 @@
+
+services:
+  Drupal\condition_field\Hook\ConditionFieldHooks:
+    class: Drupal\condition_field\Hook\ConditionFieldHooks
+    autowire: true

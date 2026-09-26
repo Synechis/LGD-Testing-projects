@@ -1,0 +1,16 @@
+name: 'Directories Better exposed filters test config'
+type: module
+package: Testing
+description: Testing module to install BEF filters
+core_version_requirement: ^10 || ^11
+dependencies:
+  - better_exposed_filters:better_exposed_filters
+  - facets:facets_exposed_filters
+  - search_api:search_api
+  - views:views
+  - localgov_directories:localgov_directories
+
+# Information added by Drupal.org packaging script on 2026-09-07
+version: '3.5.4'
+project: 'localgov_directories'
+datestamp: 1788779385

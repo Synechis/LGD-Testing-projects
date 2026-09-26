@@ -1,0 +1,28 @@
+<?php
+
+/**
+ * @file
+ * Localgov Page Components Workflow module hooks.
+ */
+
+use Drupal\localgov_page_components_workflow\Hook\NodeHooks;
+use Drupal\Core\Hook\Attribute\LegacyHook;
+use Drupal\node\NodeInterface;
+
+/**
+ * Implements hook_ENTITY_TYPE_update().
+ *
+ * @phpstan-ignore-next-line
+ */
+#[LegacyHook]
+function localgov_page_components_workflow_node_update(NodeInterface $node) {
+  \Drupal::service(NodeHooks::class)->updateNode($node);
+}
+
+/**
+ * Implements page_attachments().
+ */
+#[LegacyHook]
+function localgov_page_components_workflow_page_attachments(array &$attachments) {
+  \Drupal::service(NodeHooks::class)->pageAttachments($attachments);
+}

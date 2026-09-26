@@ -1,0 +1,35 @@
+.lgd-term__image {
+  margin-block-end: var(--vertical-rhythm-spacing);
+}
+
+@media screen and (min-width: 48rem) {
+  .lgd-term {
+    display: flex;
+    margin-block-end: var(--blog-author-content-margin);
+  }
+
+  .lgd-term__image {
+    flex-shrink: 0;
+    width: var(--blog-author-image-width);
+    margin-block-end: 0;
+  }
+
+  .lgd-term__image ~ .lgd-term__content {
+    margin-inline-start: var(--vertical-rhythm-spacing);
+  }
+}
+
+.view-taxonomy-term .view-content {
+  padding-block-start: var(--vertical-rhythm-spacing);
+  border-block-start: var(--border);
+}
+
+.view-taxonomy-term .views-row {
+  margin-block-end: var(--vertical-rhythm-spacing);
+  padding-block-end: var(--vertical-rhythm-spacing);
+  border-block-end: var(--border);
+}
+
+.feed-icons {
+  margin-block-end: var(--vertical-rhythm-spacing);
+}

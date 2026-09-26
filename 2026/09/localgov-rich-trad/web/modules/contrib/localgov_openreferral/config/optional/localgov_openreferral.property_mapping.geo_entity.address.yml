@@ -1,0 +1,22 @@
+langcode: en
+status: true
+dependencies: {  }
+id: geo_entity.address
+entity_type: geo_entity
+bundle: address
+public_type: location
+public_datatype: null
+property_mappings:
+  default:
+    -
+      field_name: label
+      public_name: name
+    -
+      field_name: uuid
+      public_name: id
+    -
+      field_name: location
+      public_name: _flatten
+    -
+      field_name: postal_address
+      public_name: physical_addresses

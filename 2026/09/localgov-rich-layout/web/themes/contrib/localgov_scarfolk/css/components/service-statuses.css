@@ -1,0 +1,20 @@
+.service-statuses {
+  padding: var(--grid-column-spacing);
+}
+
+.service-statuses__header {
+  padding-block-end: var(--grid-column-spacing);
+}
+
+.service-statuses-list {
+  padding: var(--grid-column-spacing);
+  background-color: var(--color-grey-lightest);
+}
+
+.service-statuses-list__item + .service-statuses-list__item {
+  border-color: var(--color-accent);
+}
+
+.service-statuses__link--bottom {
+  margin-block-start: var(--grid-column-spacing);
+}

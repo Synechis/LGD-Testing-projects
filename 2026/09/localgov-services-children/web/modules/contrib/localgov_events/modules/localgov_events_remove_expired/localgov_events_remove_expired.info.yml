@@ -1,0 +1,12 @@
+name: LocalGov Events remove expired
+description: Archive/Unpublished or delete expired events when cron is excuted.
+package: LocalGov Drupal
+type: module
+core_version_requirement: ^9 || ^10 ||  ^11
+dependencies:
+  - localgov_events:localgov_events
+
+# Information added by Drupal.org packaging script on 2026-07-28
+version: '3.2.7'
+project: 'localgov_events'
+datestamp: 1785237212

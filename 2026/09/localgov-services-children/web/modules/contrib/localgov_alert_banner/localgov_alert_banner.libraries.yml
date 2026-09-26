@@ -1,0 +1,9 @@
+alert_banner:
+  css:
+    component:
+      css/localgov-alert-banner.css: {}
+  js:
+    js/alert_banner.js: {}
+  dependencies:
+    - core/drupal
+    - core/once

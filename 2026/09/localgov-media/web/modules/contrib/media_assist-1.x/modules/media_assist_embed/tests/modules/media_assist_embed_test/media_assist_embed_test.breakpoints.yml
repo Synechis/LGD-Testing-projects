@@ -1,0 +1,19 @@
+media_assist_embed_test.phone:
+  label: Phone
+  mediaQuery: all
+  weight: 0
+  multipliers:
+    - '1x'
+media_assist_embed_test.tablet:
+  label: Tablet
+  mediaQuery: 'all and (min-width: 700px)'
+  weight: 1
+  multipliers:
+    - '1x'
+media_assist_embed_test.desk:
+  label: Desk
+  mediaQuery: 'all and (min-width: 1000px)'
+  weight: 2
+  multipliers:
+    - '1x'
+    - '2x'

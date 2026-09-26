@@ -1,0 +1,7 @@
+{
+  "name": "drupal/localgov_login_redirect",
+  "description": "Simple module to redirect users at login.",
+  "type": "drupal-module",
+  "homepage": "https://www.drupal.org/project/localgov_login_redirect",
+  "license": "GPL-2.0-or-later"
+}

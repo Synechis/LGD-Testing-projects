@@ -1,0 +1,7 @@
+name: 'Media Assist Embed test breakpoints'
+description: 'Breakpoint group for the media assist embed tests.'
+type: module
+package: Testing
+core_version_requirement: ^10.3 || ^11
+dependencies:
+  - drupal:breakpoint

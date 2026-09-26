@@ -1,0 +1,27 @@
+name: 'LocalGov Services: Sub Landing page'
+description: Services second level pages.
+core_version_requirement: ^10 || ^11
+type: module
+package: LocalGov Drupal
+container_rebuild_required: true
+
+dependencies:
+  - drupal:field
+  - drupal:menu_ui
+  - drupal:node
+  - drupal:path
+  - drupal:text
+  - drupal:user
+  - field_group:field_group
+  - localgov_paragraphs:localgov_paragraphs
+  - localgov_services:localgov_services
+  - localgov_services:localgov_services_landing
+  - localgov_services:localgov_services_navigation
+  - localgov_services:localgov_services_page
+  - localgov_topics:localgov_topics
+  - pathauto:pathauto
+
+# Information added by Drupal.org packaging script on 2026-07-14
+version: '2.2.6'
+project: 'localgov_services'
+datestamp: 1784027721

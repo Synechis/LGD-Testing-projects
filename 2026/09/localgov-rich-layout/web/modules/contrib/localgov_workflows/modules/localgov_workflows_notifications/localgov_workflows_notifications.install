@@ -1,0 +1,77 @@
+<?php
+
+/**
+ * @file
+ * Install functions for the LocalGov Review Notifications module.
+ */
+
+use Drupal\Core\Config\FileStorage;
+use Drupal\Core\Config\StorageInterface;
+
+/**
+ * Implements hook_install().
+ */
+function localgov_workflows_notifications_install($is_syncing) {
+
+  // Display a message if a conflicting mail module is enabled.
+  $conflicts = [
+    'sendgrid' => 'Sendgrid',
+    'smtp' => 'SMTP',
+    'mailsystem' => 'Mail System',
+  ];
+  foreach ($conflicts as $module => $title) {
+    if (\Drupal::moduleHandler()->moduleExists($module)) {
+      \Drupal::logger('localgov_workflows_notifications')->warning(
+        'The @title module is installed and this is incompatible with the Symfony Mailer module which has just been enabled. Please disable the conflicting module and review the sites email settings.',
+        ['@title' => $title]);
+      \Drupal::messenger()->addWarning(t(
+        'The @title module is installed and this is incompatible with the Symfony Mailer module which has just been enabled. Please disable the conflicting module and review the sites email settings.',
+        ['@title' => $title]));
+    }
+  }
+
+  // Initialise notification timer.
+  \Drupal::service('localgov_workflows_notifications.notification_timer')->update();
+}
+
+/**
+ * Update notification timer if not already.
+ */
+function localgov_workflows_notifications_update_10001(&$sandbox) {
+  $timer = \Drupal::service('localgov_workflows_notifications.notification_timer');
+  if (is_null($timer->getLastRun())) {
+    $timer->update();
+  }
+}
+
+/**
+ * Enable Content By Owner View.
+ */
+function localgov_workflows_notifications_update_10002(&$sandbox) {
+  /** @var \Drupal\Core\Config\ConfigInstallerInterface $config_installer */
+  $config_installer = \Drupal::service('config.installer');
+  $config_installer->installDefaultConfig('module', 'localgov_workflows_notifications');
+  $optional_install_path = \Drupal::moduleHandler()
+    ->getModule('localgov_workflows_notifications')
+    ->getPath() . '/config/optional';
+  if (is_dir($optional_install_path)) {
+    // Install the module's optional configuration that's not installed yet.
+    $storage = new FileStorage($optional_install_path, StorageInterface::DEFAULT_COLLECTION);
+    $config_installer->installOptionalConfig($storage);
+  }
+}
+
+/**
+ * Update the access permissions for the localgov_content_by_owner view.
+ */
+function localgov_workflows_notifications_update_10003(): void {
+  $config_factory = \Drupal::configFactory();
+  $config = $config_factory->getEditable('views.view.localgov_content_by_owner');
+  // If the view is still using 'access content' permission,
+  // update it to use 'administer localgov_service_contact' so it is unlikely
+  // to be publicly visible.
+  if ($config->get('display.default.display_options.access.options.perm') === 'access content') {
+    $config->set('display.default.display_options.access.options.perm', 'administer localgov_service_contact');
+    $config->save(TRUE);
+  }
+}

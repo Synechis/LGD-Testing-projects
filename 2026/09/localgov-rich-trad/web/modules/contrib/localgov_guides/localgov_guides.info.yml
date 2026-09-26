@@ -1,0 +1,16 @@
+name: LocalGov Guides
+description: Guides with overview, pages, and navigation.
+type: module
+package: LocalGov Drupal
+core_version_requirement: ^10.2 || ^11
+
+dependencies:
+  - drupal:block
+  - drupal:node
+  - drupal:text
+  - localgov_core:localgov_core
+
+# Information added by Drupal.org packaging script on 2026-07-21
+version: '2.2.5'
+project: 'localgov_guides'
+datestamp: 1784633274

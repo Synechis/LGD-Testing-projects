@@ -1,0 +1,108 @@
+_meta:
+  version: '1.0'
+  entity_type: node
+  uuid: cc248467-dc96-4296-a25f-a7861dfef450
+  bundle: localgov_publication_page
+  default_langcode: en
+  depends:
+    132505b8-a848-48ff-bd12-c74cdb09b5e8: user
+    3c8a8ef6-078e-4bf8-aa18-bd7ee95023ce: media
+default:
+  revision_uid:
+    -
+      entity: 132505b8-a848-48ff-bd12-c74cdb09b5e8
+  status:
+    -
+      value: true
+  uid:
+    -
+      entity: 132505b8-a848-48ff-bd12-c74cdb09b5e8
+  title:
+    -
+      value: 'Guidelines for submission'
+  created:
+    -
+      value: 1719917470
+  promote:
+    -
+      value: false
+  sticky:
+    -
+      value: false
+  revision_translation_affected:
+    -
+      value: true
+  moderation_state:
+    -
+      value: published
+  path:
+    -
+      alias: /publications/publications-cover-page-demo-content/petitions-scheme-publications-demo-content-1
+      langcode: en
+      pathauto: 1
+  localgov_publication_content:
+    -
+      entity:
+        _meta:
+          version: '1.0'
+          entity_type: paragraph
+          uuid: 7ecdd5ee-dd79-4e32-8d75-a18b539bb429
+          bundle: localgov_image
+          default_langcode: en
+        default:
+          status:
+            -
+              value: true
+          created:
+            -
+              value: 1719919073
+          behavior_settings:
+            -
+              value:
+                layout_paragraphs:
+                  parent_uuid: null
+                  region: null
+          revision_translation_affected:
+            -
+              value: true
+          localgov_caption:
+            -
+              value: '<p>Writing a petition - image with a caption</p>'
+              format: wysiwyg
+          localgov_image:
+            -
+              entity: 3c8a8ef6-078e-4bf8-aa18-bd7ee95023ce
+    -
+      entity:
+        _meta:
+          version: '1.0'
+          entity_type: paragraph
+          uuid: 318ae444-027c-4d16-9d6b-771da173e7a3
+          bundle: localgov_text
+          default_langcode: en
+        default:
+          status:
+            -
+              value: true
+          created:
+            -
+              value: 1719917321
+          behavior_settings:
+            -
+              value:
+                layout_paragraphs:
+                  parent_uuid: null
+                  region: null
+          revision_translation_affected:
+            -
+              value: true
+          localgov_text:
+            -
+              value: '<h3>&nbsp;</h3><p>4.1 A valid petition submitted to the Council must:</p><ul><li>Relate to something which is the Council’s responsibility, or which the Council has some influence over.</li><li>Be a clear and concise statement covering the subject of the petition. It should state what action the petitioners wish the Council to take.</li><li>Have the names, addresses and signatures of the people who support the petition (name, address and valid e-mail address if the petition is submitted<br>via e-mail or via the E-petition facility). The address might be a residential, work place or study location within the borough, with a valid postcode.</li><li>Meet defined thresholds for numbers of signatures of people who live, work or study in the borough. (See section 9 below).</li><li>Contain contact details, including an address, of the petition organiser. This is the person we will contact to explain how we will respond to the petition. The<br>contact details of the petition organiser will not be placed on our website. If the petition does not identify a petition organiser, we will contact signatories to the<br>petition to agree who should act as the petition organiser.</li><li>Not be vexatious, abusive or otherwise inappropriate.</li><li>Not relate to planning or licensing decisions or to any other matter where people have a statutory right to make comments, or to request a review or to appeal.</li></ul>'
+              format: wysiwyg
+  localgov_published_date:
+    -
+      value: '2024-07-02'
+  localgov_updated_date:
+    -
+      value: '2024-07-02'

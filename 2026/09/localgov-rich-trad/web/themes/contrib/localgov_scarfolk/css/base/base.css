@@ -1,0 +1,21 @@
+blockquote {
+  padding-inline-start: var(--spacing-largest);
+  border-color: var(--color-accent);
+  border-inline-start: var(--border-large);
+}
+
+h1,
+.h1,
+h2,
+.h2,
+h3,
+.h3,
+h4,
+.h4,
+h5,
+.h5,
+h6,
+.h6,
+.heading {
+  margin-block-end: var(--grid-column-spacing);
+}

@@ -1,0 +1,23 @@
+name: 'LocalGov Alert Banner'
+type: module
+description: 'Provides a sitewide alert banner for urgent alerts.'
+core_version_requirement: ^10 || ^11
+package: LocalGov Drupal
+dependencies:
+  - drupal:block
+  - drupal:content_moderation
+  - drupal:field
+  - drupal:link
+  - drupal:node
+  - drupal:options
+  - drupal:user
+  - drupal:views
+  - drupal:workflows
+  - condition_field:condition_field
+test_dependencies:
+  - scheduled_transitions:scheduled_transitions
+
+# Information added by Drupal.org packaging script on 2026-09-14
+version: '1.10.1'
+project: 'localgov_alert_banner'
+datestamp: 1789384728

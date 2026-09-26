@@ -1,0 +1,14 @@
+{
+    "name": "drupal/media_assist_crop",
+    "description": "Crop labels, summaries and previews for image media.",
+    "type": "drupal-module",
+    "license": "GPL-2.0-or-later",
+    "require": {
+        "drupal/core": "^10.3 || ^11",
+        "drupal/crop": "^2.3"
+    },
+    "suggest": {
+        "drupal/image_widget_crop": "Required for crop links in the media edit form.",
+        "drupal/focal_point": "Supported as an alternative crop tool."
+    }
+}

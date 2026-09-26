@@ -1,0 +1,5 @@
+
+services:
+  Drupal\localgov_alert_banner_full_page\Hook\ThemeHooks:
+    class: Drupal\localgov_alert_banner_full_page\Hook\ThemeHooks
+    autowire: true

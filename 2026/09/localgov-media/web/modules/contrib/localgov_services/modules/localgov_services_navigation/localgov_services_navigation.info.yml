@@ -1,0 +1,16 @@
+name: 'LocalGov Services: Navigation'
+description: Navigation shared by Services Pages, and external pages that link into Services.
+core_version_requirement: ^10 || ^11
+type: module
+package: LocalGov Drupal
+
+dependencies:
+  - drupal:link
+  - drupal:node
+  - drupal:pathauto
+  - localgov_services:localgov_services
+
+# Information added by Drupal.org packaging script on 2026-07-14
+version: '2.2.6'
+project: 'localgov_services'
+datestamp: 1784027721

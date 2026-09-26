@@ -1,0 +1,27 @@
+administer geo:
+  title: 'Administer geo entities'
+  description: 'Full administrative access to all geo entities.'
+  restrict access: true
+
+administer geo types:
+  title: 'Administer geo types'
+  description: 'Maintain the types of geo entity.'
+  restrict access: true
+access geo overview:
+  title: 'Access geo overview page'
+delete any geo:
+  title: 'Delete any geo'
+  description: 'Delete any geo entity regardless of ownership.'
+delete own geo:
+  title: 'Delete own geo'
+  description: 'Delete geo entities created by the user.'
+create geo:
+  title: Create geo
+view geo:
+  title: View geo
+edit any geo:
+  title: 'Edit any geo'
+  description: 'Edit any geo entity regardless of ownership.'
+edit own geo:
+  title: 'Edit own geo'
+  description: 'Edit geo entities created by the user.'

@@ -1,0 +1,10 @@
+name: LocalGov Page Component Workflow
+type: module
+description: Extends the functionality of Page Components to improve the editorial experience.
+package: LocalGov Drupal
+core_version_requirement: ^10.3 || ^11
+
+# Information added by Drupal.org packaging script on 2026-07-14
+version: '1.4.1'
+project: 'localgov_page_components'
+datestamp: 1784028922

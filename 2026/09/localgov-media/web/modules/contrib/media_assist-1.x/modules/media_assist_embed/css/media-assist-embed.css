@@ -1,0 +1,108 @@
+.ck.ck-balloon-panel:has(.mae-shapes),
+.ck.ck-dropdown__panel:has(.mae-shapes) {
+  max-width: none;
+}
+
+.ck.mae-shapes.mae-shapes {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ck-spacing-medium);
+  padding: var(--ck-spacing-medium);
+  inline-size: 21rem;
+}
+
+.ck.mae-shapes__group {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ck-spacing-small);
+}
+
+.ck.mae-shapes__heading {
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  opacity: 0.7;
+  color: var(--ck-color-text);
+  font-size: var(--ck-font-size-tiny);
+  font-weight: bold;
+}
+
+.ck.mae-shapes__row.mae-shapes__row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  align-items: end;
+  justify-items: center;
+  gap: var(--ck-spacing-small);
+}
+
+.ck.ck-button.mae-shape,
+.ck.ck-button.mae-shape.ck-on,
+.ck.ck-button.mae-shape:hover:not(.ck-disabled) {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: none;
+  box-shadow: none;
+  gap: 0.25rem;
+}
+
+.ck.ck-button.mae-shape::before {
+  display: block;
+  content: "";
+  background: var(--ck-color-base-border);
+  block-size: 2.25rem;
+  aspect-ratio: var(--mae-aspect, 4 / 3);
+  min-inline-size: 0.75rem;
+}
+
+.ck.ck-button.mae-shape:focus:not(:focus-visible) {
+  box-shadow: none;
+}
+
+.ck.ck-button.mae-shape .ck-button__label {
+  color: var(--ck-color-text);
+  font-size: var(--ck-font-size-tiny);
+}
+
+.ck.ck-button.mae-shape:hover:not(.ck-disabled)::before {
+  filter: brightness(0.85);
+}
+
+.ck.ck-button.mae-shape.ck-on::before {
+  background: var(--ck-color-button-on-color, var(--ck-color-base-active));
+}
+
+.ck.ck-button.mae-shape.ck-on .ck-button__label {
+  font-weight: bold;
+}
+
+.ck.ck-button.mae-shape.ck-disabled {
+  opacity: 0.4;
+}
+
+.ck.ck-button.mae-shape[data-mae-orientation="freestyle"]::before {
+  box-sizing: border-box;
+  border: 2px dashed var(--ck-color-base-border);
+  background: none;
+}
+
+.ck.ck-button.mae-shape.ck-on[data-mae-orientation="freestyle"]::before {
+  border-color: var(--ck-color-button-on-color, var(--ck-color-base-active));
+}
+
+.ck.ck-button.mae-other {
+  padding: var(--ck-spacing-small) var(--ck-spacing-medium);
+}
+
+.ck.ck-list__item .ck-button.mae-size--approximate .ck-button__label {
+  opacity: 0.75;
+  font-style: italic;
+}
+
+.ck.ck-dropdown.mae-dropdown .ck-dropdown__button .ck-button__label {
+  width: auto;
+  max-width: 8rem;
+}

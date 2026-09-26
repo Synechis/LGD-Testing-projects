@@ -1,0 +1,22 @@
+.service-landing-page__service {
+  padding: var(--grid-column-spacing);
+  border: var(--border);
+  border-block-start: var(--border-large-accent);
+  background-color: var(--color-grey-lightest);
+}
+
+.service-landing-page__service-icon {
+  margin-block-start: var(--spacing-smaller);
+}
+
+.service-landing-page__updates {
+  margin-block-start: var(--grid-column-spacing);
+}
+
+.lgd-teaser-list .service-landing-page__service.service-landing-page__service {
+  margin-block-end: 0;
+}
+
+.service-landing-page__service-icon svg path {
+  fill: var(--color-accent);
+}

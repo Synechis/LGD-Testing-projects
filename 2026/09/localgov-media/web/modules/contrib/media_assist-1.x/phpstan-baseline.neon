@@ -1,0 +1,4 @@
+parameters:
+	ignoreErrors:
+		- '#^Attribute class Drupal\\Core\\Hook\\Attribute\\[A-Za-z]+ does not exist\.$#'
+		- '#^Attribute class PHPUnit\\Framework\\Attributes\\[A-Za-z]+ does not exist\.$#'

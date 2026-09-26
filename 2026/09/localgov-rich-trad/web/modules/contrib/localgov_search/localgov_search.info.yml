@@ -1,0 +1,16 @@
+name: 'LocalGov Search'
+description: 'Sitewide search for LocalGov Drupal'
+core_version_requirement: ^10 || ^11
+type: module
+package: LocalGov Drupal
+
+dependencies:
+  - drupal:node
+  - drupal:views
+  - search_api:search_api
+  - localgov_core:localgov_core
+
+# Information added by Drupal.org packaging script on 2026-07-07
+version: '1.4.0'
+project: 'localgov_search'
+datestamp: 1783423141

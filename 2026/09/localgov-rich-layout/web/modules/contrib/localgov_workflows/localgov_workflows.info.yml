@@ -1,0 +1,20 @@
+name: LocalGov Workflows
+description: Provides the default editorial workflow for content types.
+package: LocalGov Drupal
+type: module
+core_version_requirement: ^10 || ^11
+
+dependencies:
+  - drupal:content_moderation
+  - drupal:node
+  - drupal:views
+  - diff:diff
+  - responsive_preview:responsive_preview
+  - scheduled_transitions:scheduled_transitions
+  - localgov_core:localgov_core
+  - localgov_core:localgov_roles
+
+# Information added by Drupal.org packaging script on 2026-09-07
+version: '1.6.1'
+project: 'localgov_workflows'
+datestamp: 1788780144

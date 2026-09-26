@@ -1,0 +1,138 @@
+_meta:
+  version: '1.0'
+  entity_type: node
+  uuid: e109e380-3add-4b10-a387-f07a9baee45a
+  bundle: localgov_publication_page
+  default_langcode: en
+  depends:
+    132505b8-a848-48ff-bd12-c74cdb09b5e8: user
+    6e36cf1c-6d7d-4f08-9812-2035ef679d03: media
+    cbc23e4d-2d63-46c8-bdaa-195ac1195b6a: media
+default:
+  revision_uid:
+    -
+      entity: 132505b8-a848-48ff-bd12-c74cdb09b5e8
+  status:
+    -
+      value: true
+  uid:
+    -
+      entity: 132505b8-a848-48ff-bd12-c74cdb09b5e8
+  title:
+    -
+      value: 'Petitions Scheme - Publications Demo Content'
+  created:
+    -
+      value: 1719916585
+  promote:
+    -
+      value: false
+  sticky:
+    -
+      value: false
+  revision_translation_affected:
+    -
+      value: true
+  moderation_state:
+    -
+      value: published
+  path:
+    -
+      alias: /publications/publications-cover-page-demo-content/petitions-scheme-publications-demo-content
+      langcode: en
+      pathauto: 1
+  localgov_publication_content:
+    -
+      entity:
+        _meta:
+          version: '1.0'
+          entity_type: paragraph
+          uuid: c18d040c-f461-40ab-b07e-52dea36b47e9
+          bundle: localgov_banner_primary
+          default_langcode: en
+        default:
+          status:
+            -
+              value: true
+          created:
+            -
+              value: 1719916800
+          behavior_settings:
+            -
+              value:
+                layout_paragraphs:
+                  parent_uuid: null
+                  region: null
+          revision_translation_affected:
+            -
+              value: true
+          localgov_image:
+            -
+              entity: 6e36cf1c-6d7d-4f08-9812-2035ef679d03
+          localgov_subsites_banner_text:
+            -
+              value: 'This is a primary banner '
+          localgov_title:
+            -
+              value: 'Petitions Scheme'
+    -
+      entity:
+        _meta:
+          version: '1.0'
+          entity_type: paragraph
+          uuid: 5683766c-9b57-462c-9d8d-a46cb856e2f1
+          bundle: localgov_text
+          default_langcode: en
+        default:
+          status:
+            -
+              value: true
+          created:
+            -
+              value: 1719916775
+          behavior_settings:
+            -
+              value:
+                layout_paragraphs:
+                  parent_uuid: null
+                  region: null
+          revision_translation_affected:
+            -
+              value: true
+          localgov_text:
+            -
+              value: '<h1>Introduction&nbsp;</h1><p><strong>This is demo content in a text box.</strong></p><p><strong>In this publication, you''ll find demo content that uses different content types and functionality to demonstrate what you can do with the publications module.</strong></p><p>This Petitions Scheme was approved by the Council under the provisions of Section 11(1) of the Local Democracy, Economic Development and Construction Act 2009. It includes procedures to comply with the requirement under the act for the Council to set up an e-petitions scheme.&nbsp;</p><p>This scheme will be updated in response to experience with the scheme, guidance from the Government or changes in legislation. The scheme will be reviewed annually as set out in <a href="/node/129" data-entity-type="node" data-entity-uuid="453e22f7-2d21-4c92-a5aa-5208797d1265" data-entity-substitution="canonical">Section 14</a>.</p><p>The Council has appointed a petitions officer, who will receive petitions and from whom further information and advice can be obtained. You can contact the petitions officer by e-mail.</p>'
+              format: wysiwyg
+    -
+      entity:
+        _meta:
+          version: '1.0'
+          entity_type: paragraph
+          uuid: f10a29a8-4fdb-4c47-9c3b-12c96926ddd5
+          bundle: localgov_video
+          default_langcode: en
+        default:
+          status:
+            -
+              value: true
+          created:
+            -
+              value: 1719917663
+          behavior_settings:
+            -
+              value:
+                layout_paragraphs:
+                  parent_uuid: null
+                  region: null
+          revision_translation_affected:
+            -
+              value: true
+          localgov_video:
+            -
+              entity: cbc23e4d-2d63-46c8-bdaa-195ac1195b6a
+  localgov_published_date:
+    -
+      value: '2024-07-02'
+  localgov_updated_date:
+    -
+      value: '2024-07-02'

@@ -1,0 +1,13 @@
+services:
+  media_assist_crop.crop_info:
+    class: Drupal\media_assist_crop\Service\CropInfo
+    arguments: ['@entity_type.manager', '@media_assist.image_style_reader']
+
+  Drupal\media_assist_crop\Hook\CropAssistHooks:
+    arguments:
+      - '@media_assist_crop.crop_info'
+      - '@current_user'
+      - '@entity_type.manager'
+      - '@cache_tags.invalidator'
+      - '@file.usage'
+      - '@request_stack'

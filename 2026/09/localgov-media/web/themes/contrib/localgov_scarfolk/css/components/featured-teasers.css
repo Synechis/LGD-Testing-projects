@@ -1,0 +1,11 @@
+.featured-teaser__content {
+  padding: var(--grid-column-spacing);
+  background-color: var(--color-grey-lightest);
+}
+
+.featured-teaser__content .field--name-localgov-link a {
+  display: inline-block;
+  padding: var(--spacing-small) var(--spacing);
+  color: var(--color-white);
+  background-color: var(--color-accent);
+}

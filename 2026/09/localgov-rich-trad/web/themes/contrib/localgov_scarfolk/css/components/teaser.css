@@ -1,0 +1,21 @@
+.lgd-teaser-list .views-row,
+.lgd-teaser-list .lgd-topic-list-builder__service,
+.news-article .field--name-localgov-news-related > .field__item {
+  margin-block-end: var(--grid-column-spacing);
+  padding-block-end: var(--grid-column-spacing);
+}
+
+.view-localgov-directory-channel .views-row:has(> .lgd-teaser) + .views-row.views-row:has(> .lgd-teaser) {
+  padding-block-start: var(--grid-column-spacing);
+  border-block-start: var(--border);
+}
+
+/*
+  Loading this here, since they use the teaser view mode.
+*/
+.lgd-topic-list-builder__service {
+  padding: var(--grid-column-spacing);
+  border: var(--border);
+  border-block-start: var(--border-large-accent);
+  background-color: var(--color-grey-lightest);
+}

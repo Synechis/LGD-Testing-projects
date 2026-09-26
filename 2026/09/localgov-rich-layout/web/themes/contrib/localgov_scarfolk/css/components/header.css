@@ -1,0 +1,17 @@
+.lgd-header {
+  padding-block: var(--grid-column-spacing);
+}
+
+@keyframes scarfolk-sticky-header {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+.sticky-header--sticky .lgd-header {
+  animation: scarfolk-sticky-header var(--transition-time);
+}

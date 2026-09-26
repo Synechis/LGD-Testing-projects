@@ -1,0 +1,10 @@
+name: "LocalGov Base Test Support"
+description: "Things to help test localgov_base that have to live in a module."
+type: module
+core_version_requirement: ^10.1.3 || ^11
+hidden: true
+
+# Information added by Drupal.org packaging script on 2026-08-17
+version: '2.6.0'
+project: 'localgov_base'
+datestamp: 1786965985

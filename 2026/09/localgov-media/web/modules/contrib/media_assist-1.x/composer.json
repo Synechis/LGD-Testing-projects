@@ -1,0 +1,13 @@
+{
+    "name": "drupal/media_assist",
+    "description": "Shared image style inspection for the media assist modules.",
+    "type": "drupal-module",
+    "license": "GPL-2.0-or-later",
+    "require": {
+        "drupal/core": "^10.3 || ^11",
+        "drupal/crop": "^2.3"
+    },
+    "require-dev": {
+        "drupal/focal_point": "^2.1"
+    }
+}

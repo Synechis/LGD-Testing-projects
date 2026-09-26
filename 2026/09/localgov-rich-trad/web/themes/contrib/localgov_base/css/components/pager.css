@@ -1,0 +1,19 @@
+.pager__items {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding-inline-start: 0;
+  list-style-type: none;
+}
+
+.pager__item {
+  margin-inline: var(--spacing-smaller);
+}
+
+.pager__item::marker {
+  color: transparent;
+}
+
+.pager__item > a {
+  padding-inline: var(--spacing-smaller);
+}

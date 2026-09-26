@@ -1,0 +1,41 @@
+<?php
+
+/**
+ * @file
+ * Install, update and uninstall functions for the LocalGov Directories Venue.
+ */
+
+/**
+ * Implements hook_install().
+ */
+function localgov_directories_venue_install($is_syncing): void {
+  if ($is_syncing) {
+    return;
+  }
+
+  // Install default config for simple_sitemap, as this does not appear to work
+  // in the config/optional folder.
+  // Discussed on https://www.drupal.org/project/simple_sitemap/issues/3156080
+  if (\Drupal::moduleHandler()->moduleExists('simple_sitemap')) {
+    $generator = \Drupal::service('simple_sitemap.entity_manager');
+    $generator->setBundleSettings('node', 'localgov_directories_venue', [
+      'index' => TRUE,
+      'priority' => '0.5',
+    ]);
+  }
+}
+
+/**
+ * Use new 'Embed' View Mode for Geo if not already altered.
+ */
+function localgov_directories_venue_update_8001() {
+  // Upgrade to LocalGov Geo copies over default to embed view mode; but removes
+  // the new label field from the template. Embed on upgrade should behave the
+  // same as Default did.
+  $config_factory = \Drupal::configFactory();
+  $config = $config_factory->getEditable('core.entity_view_display.node.localgov_directories_venue.default');
+  if ($config->get('content.localgov_location.settings.view_mode') == 'default') {
+    $config->set('content.localgov_location.settings.view_mode', 'embed');
+    $config->save(TRUE);
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "name": "drupal/localgov_content_lock",
+  "description": "Customises the Content Lock module for use with LocalGov Drupal.",
+  "type": "drupal-module",
+  "homepage": "https://www.drupal.org/project/localgov_content_lock",
+  "license": "GPL-2.0-or-later",
+  "require": {
+    "drupal/content_lock": "^3.0"
+  }
+}

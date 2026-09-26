@@ -1,0 +1,16 @@
+.box-link {
+  padding-inline: var(--grid-column-spacing);
+  text-align: center;
+  border: var(--border);
+  background-color: var(--color-grey-lightest);
+}
+
+.box-link:has(:focus-within, a:hover) {
+  color: var(--color-white);
+  background-color: var(--color-accent);
+}
+
+.box-link:has(a:hover) a {
+  color: var(--color-white);
+  background-color: var(--color-accent);
+}

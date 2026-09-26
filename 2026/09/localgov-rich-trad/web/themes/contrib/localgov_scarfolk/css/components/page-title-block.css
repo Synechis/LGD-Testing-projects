@@ -1,0 +1,8 @@
+.lgd-page-title-block {
+  margin-block-end: var(--grid-column-spacing);
+  padding-block-start: var(--grid-column-spacing);
+}
+
+.lgd-page-title-block__subheader {
+  margin-block-end: var(--grid-column-spacing);
+}

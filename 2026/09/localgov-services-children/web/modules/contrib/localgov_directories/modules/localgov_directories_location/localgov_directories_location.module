@@ -1,0 +1,123 @@
+<?php
+
+/**
+ * @file
+ * Provides a location extension to directories.
+ */
+
+use Drupal\Core\Entity\Display\EntityViewDisplayInterface;
+use Drupal\field\FieldConfigInterface;
+use Drupal\localgov_directories\ConfigurationHelper;
+use Drupal\localgov_directories\Constants as Directory;
+use Drupal\localgov_directories_location\LocationExtraFieldDisplay;
+use Drupal\localgov_directories_location\ProximitySearchSetup;
+use Drupal\node\NodeInterface;
+use Drupal\search_api\Entity\Index as SearchIndex;
+use Drupal\search_api\IndexInterface as SearchIndexInterface;
+use Drupal\search_api\Item\Field as SearchIndexField;
+
+/**
+ * Implements hook_entity_extra_field_info().
+ */
+function localgov_directories_location_entity_extra_field_info() {
+  return \Drupal::service('class_resolver')
+    ->getInstanceFromDefinition(LocationExtraFieldDisplay::class)
+    ->entityExtraFieldInfo();
+}
+
+/**
+ * Implements hook_ENTITY_TYPE_view().
+ */
+function localgov_directories_location_node_view(array &$build, NodeInterface $node, EntityViewDisplayInterface $display, $view_mode) {
+  return \Drupal::service('class_resolver')
+    ->getInstanceFromDefinition(LocationExtraFieldDisplay::class)
+    ->nodeView($build, $node, $display, $view_mode);
+}
+
+/**
+ * Implements hook_ENTITY_TYPE_insert().
+ *
+ * Once the localgov_location field is available, we need to add it to the
+ * Directories search index and also enable the Proximity search display of the
+ * Directory channel View.
+ *
+ * In a fresh installation of localgov_directories, saving the search index
+ * drops the localgov_directory_channels and localgov_directory_title_sort
+ * fields from the index as they are not attached to any content type yet.  So
+ * we add them again as we are now certain that they are attached to a content
+ * type.
+ */
+function localgov_directories_location_field_config_insert(FieldConfigInterface $field) {
+  $proximity_search_setup = \Drupal::classResolver(ProximitySearchSetup::class);
+
+  $index = SearchIndex::load(Directory::DEFAULT_INDEX);
+  $new_field_name = $field->getName();
+  $is_node_entity_type = $field->getTargetEntityTypeId() === 'node';
+
+  if ($index && $index->status() && $is_node_entity_type &&
+    $new_field_name == Directory::LOCATION_FIELD &&
+    !$index->getField(Directory::LOCATION_FIELD_WKT)
+  ) {
+    $location_field = new SearchIndexField($index, Directory::LOCATION_FIELD_WKT);
+    $location_field->setLabel('Location » Geo » location WKT');
+    $location_field->setDatasourceId('entity:node');
+    $location_field->setType('string');
+    $location_field->setPropertyPath('localgov_location:entity:location');
+    $index->addField($location_field);
+    $index->save();
+  }
+
+  if (in_array($new_field_name, [
+    Directory::CHANNEL_SELECTION_FIELD,
+    Directory::TITLE_SORT_FIELD,
+  ], TRUE) && $is_node_entity_type && $index) {
+    // The channel selection and title sort fields may have gone missing from
+    // the search index when we added localgov_location.
+    $proximity_search_setup->repairSearchIndex($index);
+  }
+
+  if ($proximity_search_setup->hasLocationSearch() &&
+    $is_node_entity_type && $index && $index->status() &&
+    $new_field_name === Directory::LOCATION_FIELD &&
+    !$index->getField(Directory::LOCATION_FIELD)
+  ) {
+    if ($proximity_search_setup->setup($field, $index)) {
+      \Drupal::classResolver(ConfigurationHelper::class)->createFacet(Directory::FACET_CONFIG_ENTITY_ID_FOR_PROXIMITY_SEARCH, Directory::FACET_CONFIG_FILE_FOR_PROXIMITY_SEARCH);
+    }
+  }
+}
+
+/**
+ * Implements hook_ENTITY_TYPE_update() for hook_search_api_index_update().
+ *
+ * Whenever the Directory search index is updated, check if we need to setup
+ * proximity search.  This is useful where location search was unavailable when
+ * this module was installed but has now become available.
+ */
+function localgov_directories_location_search_api_index_update(SearchIndexInterface $search_index) {
+  $index_update_running = &drupal_static(__FUNCTION__);
+  if ($index_update_running) {
+    return;
+  }
+  $index_update_running = TRUE;
+
+  // Check location wkt string and location lat/lon fields. If missing
+  // run same logic as when their are first inserted to see if they
+  // can or should be added to the index.
+  if ($search_index->id() == Directory::DEFAULT_INDEX &&
+    (
+      !$search_index->getField(Directory::LOCATION_FIELD_WKT) ||
+      !$search_index->getField(Directory::LOCATION_FIELD)
+    )
+  ) {
+    $location_field_configs = \Drupal::service('entity_type.manager')
+      ->getStorage('field_config')
+      ->loadByProperties([
+        'field_name'  => Directory::LOCATION_FIELD,
+        'entity_type' => 'node',
+      ]);
+    array_walk($location_field_configs, 'localgov_directories_location_field_config_insert');
+  }
+
+  $index_update_running = FALSE;
+}

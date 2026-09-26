@@ -1,0 +1,5 @@
+media_assist_crop.preview:
+  route_name: media_assist_crop.preview
+  base_route: entity.media.canonical
+  title: 'Crop preview'
+  weight: 40

@@ -1,0 +1,7 @@
+.newsroom-teaser > * + * {
+  margin-block-start: var(--vertical-rhythm-spacing);
+}
+
+.newsroom-teaser__title > a {
+  display: inline-block;
+}

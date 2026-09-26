@@ -1,0 +1,10 @@
+type: module
+name: LocalGov menu link group
+description: Present menu links in groups.
+package: LocalGov Drupal
+core_version_requirement: ^10 || ^11
+
+# Information added by Drupal.org packaging script on 2025-12-01
+version: '1.2.0'
+project: 'localgov_menu_link_group'
+datestamp: 1764604970

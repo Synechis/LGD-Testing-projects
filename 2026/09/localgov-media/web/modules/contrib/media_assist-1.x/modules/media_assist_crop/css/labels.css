@@ -1,0 +1,55 @@
+.media-assist-crop-anchor {
+  position: relative;
+}
+
+.media-assist-crop-badge {
+  position: absolute;
+  z-index: 500;
+  padding: 0.2em 0.45em;
+  pointer-events: none;
+  color: #fff;
+  background: rgb(20, 20, 34, 0.88);
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 0.75rem;
+  line-height: 1.4;
+  inset-block-start: 0;
+  inset-inline-start: 0;
+  max-inline-size: 100%;
+  border-end-end-radius: 0.25em;
+}
+
+.media-assist-crop-toggle {
+  position: fixed;
+  z-index: 501;
+  padding: 0.5em 0.9em;
+  cursor: pointer;
+  color: #fff;
+  border: 2px solid #fff;
+  border-radius: 0.25em;
+  background: #1b1b2f;
+  font-size: 0.8125rem;
+  inset-block-end: 1rem;
+  inset-inline-end: 1rem;
+}
+
+.media-assist-crop-toggle:focus-visible {
+  outline: 3px solid #ffd479;
+  outline-offset: 2px;
+}
+
+.media-assist-crop-toggle[aria-pressed="false"] {
+  color: #1b1b2f;
+  border-color: #1b1b2f;
+  background: #fff;
+}
+
+.media-assist-crop-hidden .media-assist-crop-badge {
+  display: none;
+}
+
+@media print {
+  .media-assist-crop-badge,
+  .media-assist-crop-toggle {
+    display: none;
+  }
+}

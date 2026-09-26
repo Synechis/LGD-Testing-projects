@@ -1,0 +1,6 @@
+.sidebar .lgd-region__inner > *,
+.blog-channel__sidebar > *,
+.newsroom__sidebar > * {
+  border: var(--border);
+  border-block-start: var(--border-large-accent);
+}

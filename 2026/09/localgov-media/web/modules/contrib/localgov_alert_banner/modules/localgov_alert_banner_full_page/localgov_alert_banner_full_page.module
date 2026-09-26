@@ -1,0 +1,32 @@
+<?php
+
+/**
+ * @file
+ * Hook implementations.
+ */
+
+declare(strict_types=1);
+
+use Drupal\Core\Hook\Attribute\LegacyHook;
+use Drupal\localgov_alert_banner_full_page\Hook\ThemeHooks;
+
+/**
+ * Implements hook_theme().
+ */
+#[LegacyHook]
+function localgov_alert_banner_full_page_theme(): array {
+  return \Drupal::service(ThemeHooks::class)->theme();
+}
+
+/**
+ * Implements hook_preprocess_HOOK() for localgov-alert-banner--full.
+ *
+ * Implements hook_preprocess_localgov_alert_banner() for hook_preprocess_localgov_alert_banner__full().
+ *
+ * - Adds a unique id for the top level wrapper div of the alert banner.
+ * - Adds relevant Javascript settings and library.
+ */
+#[LegacyHook]
+function localgov_alert_banner_full_page_preprocess_localgov_alert_banner__localgov_full_page(&$variables) : void {
+  \Drupal::service(ThemeHooks::class)->preprocessLocalgovAlertBannerFullPage($variables);
+}

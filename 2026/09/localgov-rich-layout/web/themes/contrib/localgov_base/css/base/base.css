@@ -1,0 +1,234 @@
+/*
+  @file Base/element level theming.
+
+  This file sets up default CSS for elements, such as links as
+  well as font sizes, vertical rhythm, etc.
+*/
+
+html {
+  box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin-block-start: 0; /* Removing top margin, for better vertical rhythm layout */
+}
+
+dialog {
+  margin: auto;
+}
+
+body {
+  margin: 0;
+  color: var(--color-text);
+  font-family: var(--font-primary);
+  font-size: var(--font-size);
+  line-height: var(--line-height);
+  scroll-behavior: smooth;
+  overflow-wrap: break-word;
+}
+
+@media screen and (prefers-reduced-motion: reduce) {
+  body {
+    scroll-behavior: auto;
+  }
+}
+
+.dialog-off-canvas-main-canvas {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+main {
+  /* To give us a sticky footer. */
+  margin-block-end: auto;
+}
+
+a {
+  transition: var(--transition-time);
+  color: var(--color-link);
+}
+
+a:hover {
+  text-decoration-thickness: max(3px, 0.1875rem, 0.12em);
+}
+
+a:not([class*="toolbar"]):focus {
+  text-decoration: none;
+  color: var(--color-black);
+  outline: 3px solid transparent;
+  background-color: var(--color-focus);
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+  box-shadow:
+    0 -2px var(--color-focus),
+    0 4px var(--color-black);
+}
+
+h1,
+.h1,
+h2,
+.h2,
+h3,
+.h3,
+h4,
+.h4,
+h5,
+.h5,
+h6,
+.h6,
+.heading {
+  margin-block-end: var(--vertical-rhythm-spacing);
+  font-family: var(--font-secondary);
+}
+
+h1,
+.h1 {
+  color: var(--heading-1-color);
+  font-family: var(--font-heading-1);
+  font-size: var(--font-size-h1);
+  font-weight: var(--heading-1-font-weight);
+  line-height: var(--heading-1-line-height);
+}
+
+h2,
+.h2 {
+  color: var(--heading-2-color);
+  font-family: var(--font-heading-2);
+  font-size: var(--font-size-h2);
+  font-weight: var(--heading-2-font-weight);
+  line-height: var(--heading-2-line-height);
+}
+
+h3,
+.h3 {
+  color: var(--heading-3-color);
+  font-family: var(--font-heading-3);
+  font-size: var(--font-size-h3);
+  font-weight: var(--heading-3-font-weight);
+  line-height: var(--heading-3-line-height);
+}
+
+h4,
+.h4 {
+  color: var(--heading-4-color);
+  font-family: var(--font-heading-4);
+  font-size: var(--font-size-h4);
+  font-weight: bold;
+  font-weight: var(--heading-4-font-weight);
+  line-height: var(--heading-4-line-height);
+}
+
+h5,
+.h5 {
+  color: var(--heading-5-color);
+  font-family: var(--font-heading-5);
+  font-size: var(--font-size-h5);
+  font-weight: var(--heading-5-font-weight);
+  font-variant: small-caps;
+  line-height: var(--heading-5-line-height);
+}
+
+h6,
+.h6 {
+  text-decoration: underline;
+  color: var(--heading-6-color);
+  font-family: var(--font-heading-6);
+  font-size: var(--font-size-h6);
+  font-weight: var(--heading-6-font-weight);
+  font-variant: small-caps;
+  line-height: var(--heading-6-line-height);
+}
+
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+img[alt] {
+  text-wrap: balance;
+  color: var(--image-alt-color);
+  font-size: var(--image-alt-font-size-large);
+  font-style: var(--image-alt-font-style);
+}
+img[data-img-loading-error] {
+  padding: var(--image-alt-spacing);
+  border: var(--image-alt-border);
+  background-color: var(--image-alt-bg-color);
+}
+
+p,
+ul,
+ol,
+pre,
+table,
+blockquote {
+  margin-block-end: var(--vertical-rhythm-spacing);
+}
+
+ul ul,
+ol ol,
+ul ol,
+ol ul {
+  margin-block-end: 0;
+}
+
+blockquote:not(.pull-out-quote__content) {
+  padding-inline-start: var(--quote-padding-inline-start);
+  border-color: var(--color-accent);
+  border-inline-start: var(--quote-border);
+}
+
+sub,
+sup {
+  position: relative;
+  vertical-align: baseline;
+  line-height: 0;
+}
+
+sup {
+  top: -0.5rem;
+}
+
+sub {
+  bottom: -0.25rem;
+}
+
+table {
+  width: 100%;
+  text-align: left;
+  border: var(--table-border);
+  border-collapse: collapse;
+}
+
+td,
+th {
+  padding: var(--table-padding);
+  border: var(--table-border);
+}
+
+th {
+  border-color: var(--table-header-border-color);
+  background-color: var(--table-bg-color);
+}
+
+/* Responsive tables for table field tables */
+.field--name-localgov-table {
+  overflow-x: hidden;
+  max-width: 100%;
+}
+.tablefield-wrapper {
+  overflow-x: auto;
+}
+
+input,
+select,
+option,
+textarea,
+button {
+  font-family: var(--font-primary);
+}

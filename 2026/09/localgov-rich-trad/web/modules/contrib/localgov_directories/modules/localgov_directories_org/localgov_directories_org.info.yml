@@ -1,0 +1,14 @@
+name: 'LocalGov Directories Organisation'
+type: module
+description: 'Provides a standard organisation type for either as directory entry, or for other Open Referral compatible entries.'
+package: LocalGov Drupal
+core_version_requirement: ^10 || ^11
+dependencies:
+  - field_group:field_group
+  - localgov_directories:localgov_directories
+  - localgov_directories:localgov_directories_location
+
+# Information added by Drupal.org packaging script on 2026-09-07
+version: '3.5.4'
+project: 'localgov_directories'
+datestamp: 1788779385

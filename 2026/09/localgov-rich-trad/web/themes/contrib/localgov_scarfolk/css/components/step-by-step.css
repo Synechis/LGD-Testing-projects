@@ -1,0 +1,46 @@
+.step-by-step-pages ol.step-list {
+  margin-block-start: var(--grid-column-spacing);
+  padding-inline: 0;
+  border-block-start: var(--border);
+}
+
+.step-by-step-pages ol.step-list .step .step__title {
+  padding-block-end: var(--grid-column-spacing);
+}
+
+.step-by-step-pages ol.step-list .step:not(:first-child) .step__title {
+  padding-block-start: var(--grid-column-spacing);
+  border-block-start: var(--border);
+}
+
+.step-summary-container {
+  display: inline-block;
+  margin-block-start: var(--spacing);
+}
+
+.step-by-step-pages ol.step-list .step .step__title .step-show {
+  padding: var(--spacing-smaller);
+  padding-inline-start: 0;
+  transition: var(--transition-time);
+}
+.step-by-step-pages ol.step-list .step .step__title .step-show:hover,
+.step-by-step-pages ol.step-list .step .step__title .step-show:focus {
+  padding-inline-start: var(--spacing-smaller);
+}
+
+.step-by-step-pages ol.step-list .step .step__summary {
+  margin-block-end: var(--grid-column-spacing);
+  margin-inline-start: calc(var(--grid-column-spacing) * 1.3);
+  padding-block-end: 0;
+  padding-inline-start: var(--spacing);
+  border-inline-start: var(--border);
+  font-style: italic;
+}
+
+.step-by-step-pages ol.step-list .step:not(:first-child)::before {
+  top: var(--grid-column-spacing);
+}
+
+.step-by-step-pages ol.step-list .step:not(:last-of-type)::after {
+  height: 100%;
+}

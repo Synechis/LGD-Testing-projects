@@ -1,0 +1,15 @@
+name: 'Geo Entity: Time zone'
+type: module
+description: Populate Timezone field from Geofield location using Geonames.
+package: Geo
+core_version_requirement: ^9 || ^10 || ^11
+lifecycle: experimental
+dependencies:
+  - geofield:geofield
+  - tzfield:tzfield
+  - geo_entity:geo_entity
+
+# Information added by Drupal.org packaging script on 2026-04-03
+version: '1.1.2'
+project: 'geo_entity'
+datestamp: 1775224426

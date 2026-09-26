@@ -1,0 +1,41 @@
+.back-to-top {
+  position: fixed;
+  right: 2em;
+  bottom: 2em;
+  display: flex;
+  padding: var(--button-link-padding);
+  transition: var(--transition-time);
+  text-decoration: none;
+  opacity: 1;
+  color: var(--button-link-color);
+  border: 3px solid var(--color-white);
+  background: var(--button-link-bg-color);
+  font-weight: bold;
+  gap: var(--spacing-small);
+}
+
+.back-to-top[hidden] {
+  opacity: 0;
+}
+
+.back-to-top:hover,
+.back-to-top:focus {
+  text-decoration: underline;
+}
+
+.back-to-top__icon svg path {
+  fill: currentColor;
+}
+
+.back-to-top-target {
+  overflow: hidden;
+  max-width: 1px;
+  max-height: 1px;
+}
+
+@media screen and (min-width: 48rem) {
+  .back-to-top {
+    right: 5em;
+    bottom: 5em;
+  }
+}

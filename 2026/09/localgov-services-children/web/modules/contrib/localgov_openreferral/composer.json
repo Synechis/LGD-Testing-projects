@@ -1,0 +1,12 @@
+{
+    "name": "drupal/localgov_openreferral",
+    "type": "drupal-module",
+    "description": "LocalGov Drupal Open Referral",
+    "homepage": "https://drupal.org/project/localgov_openreferral",
+    "license": "GPL-2.0-or-later",
+    "require": {
+        "drupal/facets": "^2.0 || ^3.0",
+        "drupal/localgov_geo": "^2.0",
+        "drupal/search_api": "^1.17"
+    }
+}

@@ -1,0 +1,18 @@
+{
+    "name": "drupal/localgov_search",
+    "description": "Sitewide search for LocalGov Drupal.",
+    "type": "drupal-module",
+    "homepage": "https://www.drupal.org/project/localgov_search",
+    "license": "GPL-2.0-or-later",
+    "minimum-stability": "dev",
+    "require": {
+        "drupal/localgov_core": "^2.12 || ^3.3",
+        "drupal/search_api": "^1.19"
+    },
+    "require-dev": {
+        "drupal/search_api_solr": "^4.2"
+    },
+    "suggest": {
+        "drupal/search_api_solr": "If solr integration, rather that database search, is required."
+    }
+}

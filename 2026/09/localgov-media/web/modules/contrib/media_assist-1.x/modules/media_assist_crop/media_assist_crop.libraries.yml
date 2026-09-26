@@ -1,0 +1,29 @@
+labels:
+  version: 1.x
+  js:
+    js/labels.js: {}
+  css:
+    theme:
+      css/labels.css: {}
+  dependencies:
+    - core/drupal
+    - core/drupalSettings
+    - core/once
+
+summary:
+  version: 1.x
+  js:
+    js/summary.js: {}
+  css:
+    theme:
+      css/summary.css: {}
+  dependencies:
+    - core/drupal
+    - core/once
+    - core/jquery
+
+preview:
+  version: 1.x
+  css:
+    theme:
+      css/preview.css: {}

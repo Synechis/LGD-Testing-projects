@@ -1,0 +1,7 @@
+name: Media Assist
+description: 'Shared image style inspection for the media assist modules.'
+type: module
+package: Media
+core_version_requirement: ^10.3 || ^11
+dependencies:
+  - drupal:image

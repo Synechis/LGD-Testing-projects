@@ -1,0 +1,10 @@
+{
+    "name": "drupal/localgov_scarfolk",
+    "description": "A demonstration sub-theme for LocalGov Drupal websites.",
+    "type": "drupal-theme",
+    "homepage": "https://drupal.org/project/localgov_scarfolk",
+    "license": "GPL-2.0-or-later",
+    "require": {
+        "drupal/localgov_base": ">1.7.0 || ^2.0"
+    }
+}

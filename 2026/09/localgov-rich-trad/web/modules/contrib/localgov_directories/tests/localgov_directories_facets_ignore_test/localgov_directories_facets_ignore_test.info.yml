@@ -1,0 +1,9 @@
+name: 'Directories Facet Type config ignore test'
+type: module
+package: Testing
+description: Testing module to check directory facets config is not exported.
+
+# Information added by Drupal.org packaging script on 2026-09-07
+version: '3.5.4'
+project: 'localgov_directories'
+datestamp: 1788779385
