@@ -1,0 +1,141 @@
+{
+    "name": "drupal/localgov_project",
+    "description": "Project template for the LocalGov Drupal distribution.",
+    "type": "project",
+    "license": "GPL-2.0-or-later",
+    "homepage": "https://github.com/drupal/localgov_project",
+    "repositories": {
+        "localgov-base-3580893": {
+            "type": "vcs",
+            "url": "https://git.drupalcode.org/issue/localgov_base-3580893.git",
+            "canonical": false
+        },
+        "localgov-core-3585253": {
+            "type": "vcs",
+            "url": "https://git.drupalcode.org/issue/localgov_core-3585253.git",
+            "canonical": false
+        },
+        "localgov-demo-3582240": {
+            "type": "vcs",
+            "url": "https://git.drupalcode.org/issue/localgov_demo-3582240.git",
+            "canonical": false
+        },
+        "localgov-paragraphs-3582221": {
+            "type": "vcs",
+            "url": "https://git.drupalcode.org/issue/localgov_paragraphs-3582221.git",
+            "canonical": false
+        },
+        "localgov-scarfolk-3580932": {
+            "type": "vcs",
+            "url": "https://git.drupalcode.org/issue/localgov_scarfolk-3580932.git",
+            "canonical": false
+        },
+        "localgov-services-3561968": {
+            "type": "vcs",
+            "url": "https://git.drupalcode.org/issue/localgov_services-3561968.git",
+            "canonical": false
+        },
+        "drupal": {
+            "type": "composer",
+            "url": "https://packages.drupal.org/8"
+        }
+    },
+    "require": {
+        "composer/installers": "^2.3",
+        "cweagans/composer-patches": "^1.6",
+        "drupal/core-composer-scaffold": "^11.3",
+        "drupal/core-recommended": "^11.3",
+        "drupal/localgov": "^4.0",
+        "drupal/localgov_base": "dev-3580893-add-support-for as 2.3.4",
+        "drupal/localgov_core": "dev-3585253-add-base-field as 3.1.2",
+        "drupal/localgov_demo": "dev-3582240-update-demo-content as 3.1.1",
+        "drupal/localgov_paragraphs": "dev-3582221-add-existing-page as 2.6.3",
+        "drupal/localgov_scarfolk": "dev-3580932-check-the-new as 2.0.1",
+        "drupal/localgov_services": "dev-3561968-add-external-links as 2.2.4",
+        "drupal/localgov_search_solr": "^1.1",
+        "wikimedia/composer-merge-plugin": "^2.1"
+    },
+    "require-dev": {
+        "brianium/paratest": "^6.0 || ^7.3.1",
+        "drupal/coder": "^8.3",
+        "drupal/core-dev": "^11.3",
+        "mglaman/phpstan-drupal": "^1.0",
+        "phpspec/prophecy-phpunit": "^2",
+        "phpstan/phpstan": "^1.0",
+        "phpstan/phpstan-deprecation-rules": "^1.0",
+        "phpstan/phpstan-strict-rules": "^1.5",
+        "spaze/phpstan-disallowed-calls": "^4.5.0",
+        "squizlabs/php_codesniffer": "^3.6"
+    },
+    "conflict": {
+        "drupal/drupal": "*"
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "config": {
+        "sort-packages": true,
+        "allow-plugins": {
+            "composer/installers": true,
+            "cweagans/composer-patches": true,
+            "dealerdirect/phpcodesniffer-composer-installer": true,
+            "drupal/core-composer-scaffold": true,
+            "drupal/core-project-message": true,
+            "php-http/discovery": true,
+            "phpstan/extension-installer": true,
+            "symfony/runtime": true,
+            "tbachert/spi": false,
+            "wikimedia/composer-merge-plugin": true
+        }
+    },
+    "extra": {
+        "enable-patching": true,
+        "patchLevel": {
+          "drupal/core": "-p2"
+        },
+        "drupal-scaffold": {
+            "locations": {
+                "web-root": "web/"
+            },
+            "file-mapping": {
+                "[web-root]/sites/default/settings.php": {
+                    "mode": "replace",
+                    "path": "assets/composer/settings.php",
+                    "overwrite": false
+                },
+                "[web-root]/sites/default/settings.lando.php": {
+                    "mode": "replace",
+                    "path": "assets/composer/settings.lando.php",
+                    "overwrite": false
+                },
+                "[web-root]/sites/development.services.yml": "assets/composer/development.services.yml"
+            }
+        },
+        "patches-ignore": {
+            "localgovdrupal/localgov": {
+                "drupal/core": {
+                    "Content moderation and Workspaces https://www.drupal.org/project/drupal/issues/3179199#comment-15711680" : "https://www.drupal.org/files/issues/2024-08-11/3179199-3132022-content-moderation-workspaces-query.patch"
+                }
+            },
+            "localgovdrupal/localgov_services": {
+                "drupal/core": {
+                    "node_access filters out accessible nodes when node is left joined (1349080)" : "https://git.drupalcode.org/project/drupal/-/commit/c271adb.diff"
+                }
+            }
+        },
+        "installer-paths": {
+            "web/core": ["type:drupal-core"],
+            "web/libraries/{$name}": ["type:drupal-library"],
+            "web/modules/contrib/{$name}": ["type:drupal-module"],
+            "web/profiles/contrib/{$name}": ["type:drupal-profile"],
+            "web/themes/contrib/{$name}": ["type:drupal-theme"],
+            "drush/Commands/contrib/{$name}": ["type:drupal-drush"],
+            "web/modules/custom/{$name}": ["type:drupal-custom-module"],
+            "web/themes/custom/{$name}": ["type:drupal-custom-theme"]
+        },
+        "merge-plugin": {
+            "include": [
+                "web/modules/contrib/dropzonejs/composer.libraries.json"
+            ]
+        }
+    }
+}
